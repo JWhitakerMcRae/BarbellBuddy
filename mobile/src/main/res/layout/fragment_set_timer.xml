@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".SetTimerActivity$PlaceholderFragment">
+
+    <TextView
+        android:id="@+id/textView_setTimerInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textview_set_timer_info"/>
+
+    <TextView
+        android:id="@+id/textView_setTimerInfo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView_setTimerInfo"
+        android:text="@string/textview_set_timer_info2"/>
+
+    <com.mcraesolutions.watchfacelibrary.WatchfaceLayout
+        android:id="@+id/watchfaceLayout_watchface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/button_setTimerStartStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="@dimen/padding_button"
+        android:paddingLeft="@dimen/padding_button_sides"
+        android:paddingRight="@dimen/padding_button_sides"
+        android:paddingTop="@dimen/padding_button"
+        android:text="@string/button_set_timer_start"/>
+
+</RelativeLayout>

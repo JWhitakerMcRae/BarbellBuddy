@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Barbell Buddy</string>
+
+    <!-- action bar titles -->
+    <string name="action_start_wear_app">Start Wear</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_help">Help</string>
+
+    <!-- info text displayed at the top of set timer view -->
+    <string name="textview_set_timer_info"><b>Welcome to Barbell Buddy!</b></string>
+    <string name="textview_set_timer_info2">Click the watch icon at the top to launch on your Android Wear watch :)</string>
+
+    <!-- set timer start/stop button -->
+    <string name="button_set_timer_start">Start</string>
+    <string name="button_set_timer_stop">Stop</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
