@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView_setTimerBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/background_image_description"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar_setTimerVisual"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:clickable="false"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="0"
+        android:progressDrawable="@drawable/progress_bar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_setTimerTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:clickable="false"
+            android:padding="@dimen/padding_cluster"
+            android:textColor="@color/text_color_primary"
+            android:textSize="@dimen/text_size_small"/>
+
+        <Chronometer
+            android:id="@+id/chronometer_setTimerChrono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/view_bubble"
+            android:clickable="false"
+            android:paddingBottom="@dimen/padding_cluster"
+            android:paddingLeft="@dimen/padding_cluster_sides"
+            android:paddingRight="@dimen/padding_cluster_sides"
+            android:paddingTop="@dimen/padding_cluster"
+            android:textColor="@color/text_color_primary"
+            android:textSize="@dimen/text_size_large"/>
+
+        <!-- Shows seconds -->
+        <TextClock
+            android:id="@+id/textClock_displayedClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:clickable="false"
+            android:padding="@dimen/padding_cluster"
+            android:textColor="@color/text_color_secondary"
+            android:textSize="@dimen/text_size_medium"/>
+    </LinearLayout>
+
+</FrameLayout>

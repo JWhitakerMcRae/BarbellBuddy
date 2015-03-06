@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- vibrate duration on notify -->
+    <integer name="vibration_duration">1000</integer>
+
+</resources>

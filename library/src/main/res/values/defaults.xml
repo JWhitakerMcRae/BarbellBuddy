@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- settings value - set phase length -->
+    <integer name="prepare_phase_length_ms">10000</integer>
+    <integer name="lift_phase_length_ms">30000</integer>
+    <integer name="wait_phase_length_ms">80000</integer>
+
+    <!-- settings value - set phase background color -->
+    <color name="prepare_background_color">#F5A9A9</color>
+    <color name="lift_background_color">#81F79F</color>
+    <color name="wait_background_color">#73B8E6</color>
+
+    <!-- settings value - set phase alert on/off status -->
+    <bool name="prepare_phase_start_alert_on">true</bool>
+    <bool name="lift_phase_start_alert_on">false</bool>
+    <bool name="wait_phase_start_alert_on">false</bool>
+
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- font sizes -->
+    <dimen name="text_size_large">38sp</dimen>
+    <dimen name="text_size_medium">22sp</dimen>
+    <dimen name="text_size_small">18sp</dimen>
+
+    <!-- padding values -->
+    <dimen name="padding_cluster">2dp</dimen>
+    <dimen name="padding_cluster_sides">12dp</dimen>
+
+    <!-- highlight background corner radius -->
+    <dimen name="highlight_background_corner">35dp</dimen>
+
+</resources>
