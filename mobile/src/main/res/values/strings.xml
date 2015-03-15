@@ -14,7 +14,32 @@
     <string name="button_set_timer_start">Start</string>
     <string name="button_set_timer_stop">Stop</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- preferences xml strings -->
+    <string name="prepare_phase_length_preference_title">Phase Length</string>
+    <string name="prepare_phase_length_preference_summary"></string>
+    <string name="prepare_phase_length_preference_dialog_title">Select phase length:</string>
+
+    <string name="prepare_phase_preferences">Prepare</string>
+    <string name="prepare_phase_vibrate_on_preference_key">prepare_phase_vibrate_on_preference_key</string>
+    <string name="prepare_phase_vibrate_on_title">Vibrate Alert</string>
+    <string name="prepare_phase_vibrate_on_summary">Issue vibration for start of phase</string>
+
+    <string name="lift_phase_length_preference_title">Phase Length</string>
+    <string name="lift_phase_length_preference_summary"></string>
+    <string name="lift_phase_length_preference_dialog_title">Select phase length:</string>
+
+    <string name="lift_phase_preferences">Lift</string>
+    <string name="lift_phase_vibrate_on_preference_key">lift_phase_vibrate_on_preference_key</string>
+    <string name="lift_phase_vibrate_on_title">Vibrate Alert</string>
+    <string name="lift_phase_vibrate_on_summary">Issue vibration for start of phase</string>
+
+    <string name="wait_phase_length_preference_title">Phase Length</string>
+    <string name="wait_phase_length_preference_summary"></string>
+    <string name="wait_phase_length_preference_dialog_title">Select phase length:</string>
+
+    <string name="wait_phase_preferences">Wait</string>
+    <string name="wait_phase_vibrate_on_preference_key">wait_phase_vibrate_on_preference_key</string>
+    <string name="wait_phase_vibrate_on_title">Vibrate Alert</string>
+    <string name="wait_phase_vibrate_on_summary">Issue vibration for start of phase</string>
 
 </resources>

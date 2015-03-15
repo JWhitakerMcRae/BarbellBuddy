@@ -1,12 +1,13 @@
 package com.mcraesolutions.barbellbuddy;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.preference.ListPreference;
+import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,33 +17,23 @@ import android.view.ViewGroup;
  * Use the {@link SettingsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SettingsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class SettingsFragment extends PreferenceFragment {
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private static final String TAG = "SettingsFragment";
 
     private OnFragmentInteractionListener mListener;
+
+    // ****************************************************************************************** //
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment SettingsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SettingsFragment newInstance(String param1, String param2) {
+    public static SettingsFragment newInstance() {
         SettingsFragment fragment = new SettingsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -50,28 +41,7 @@ public class SettingsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+    // ****************************************************************************************** //
 
     @Override
     public void onAttach(Activity activity) {
@@ -85,10 +55,72 @@ public class SettingsFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // load preferences layout from XML
+        addPreferencesFromResource(R.xml.preferences);
+
+        // register preferences onChange listeners
+        PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
+
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
+                if (key.equals("prepare_phase_length_preference_key")) {
+                    // TODO: save value
+                    updatePreparePhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString("prepare_phase_length_key", "0"))); // TODO: fix default value
+                }
+                else if (key.equals("prepare_phase_vibrate_on_preference_key")) {
+                    // TODO: save value
+                }
+                else if (key.equals("lift_phase_length_preference_key")) {
+                    // TODO: save value
+                    updateLiftPhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString("prepare_phase_length_key", "0"))); // TODO: fix default value
+                }
+                else if (key.equals("lift_phase_vibrate_on_preference_key")) {
+                    // TODO: save value
+                }
+                else if (key.equals("wait_phase_length_preference_key")) {
+                    // TODO: save value
+                    updateWaitPhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString("prepare_phase_length_key", "0"))); // TODO: fix default value
+                }
+                else if (key.equals("wait_phase_vibrate_on_preference_key")) {
+                    // TODO: save value
+                }
+            }
+        });
+    }
+
+    // onCreateView
+
+    // onActivityCreated
+
+    // onStart
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // initialize settings values
+        initSettingsValues();
+    }
+
+    // onPause
+
+    // onStop
+
+    // onDestroyView
+
+    // onDestroy
+
+    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
+
+    // ****************************************************************************************** //
 
     /**
      * This interface must be implemented by activities that contain this
@@ -105,4 +137,52 @@ public class SettingsFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
+    // ****************************************************************************************** //
+
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    // ****************************************************************************************** //
+
+    private void initSettingsValues() {
+        // TODO: read settings to class variables
+        // TODO: initialize summary strings
+    }
+
+    private void updatePreparePhaseLengthPreferenceSummary(int value) {
+
+        ListPreference preparePhaseLengthPreference = (ListPreference) findPreference("prepare_phase_length_preference_key");
+        try {
+            preparePhaseLengthPreference.setSummary(value + " seconds"); // TODO: read unit string from strings.xml
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateLiftPhaseLengthPreferenceSummary(int value) {
+
+        ListPreference liftPhaseLengthPreference = (ListPreference) findPreference("lift_phase_length_preference_key");
+        try {
+            liftPhaseLengthPreference.setSummary(value + " seconds"); // TODO: read unit string from strings.xml
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateWaitPhaseLengthPreferenceSummary(int value) {
+
+        ListPreference waitPhaseLengthPreference = (ListPreference) findPreference("wait_phase_length_preference_key");
+        try {
+            waitPhaseLengthPreference.setSummary(value + " seconds"); // TODO: read unit string from strings.xml
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+    }
 }
