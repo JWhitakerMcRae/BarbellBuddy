@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- TODO: merge constants files from mobile and wear in library module -->
+
     <!--
     The naming convention found in this file has been taken from an article by Kiran Rao at The Curious Techizen:
     http://curioustechizen.blogspot.com/2013/02/android-constants-preference-keys.html
@@ -23,7 +25,7 @@
     <string name="extra_wait_phase_length_ms">com.mcraesolutions.barbellbuddy.WAIT_PHASE_LENGTH_MS</string>
 
     <!-- settings value - set phase background color -->
-    <string name="extra_prepare_phase_background_color">com.mcraesolutions.barbellbuddy.PREPARE_PHASE_BACKGROUND_COLOR</string>
+    <string name="extra_prepare_phase_background_color">com.mcraesolutions.barbellbuddy.PREPARE_PHASE_BACKGROUND_COLOR2</string> <!-- TODO: why need to append with '2' to make it work?? -->
     <string name="extra_lift_phase_background_color">com.mcraesolutions.barbellbuddy.LIFT_PHASE_BACKGROUND_COLOR</string>
     <string name="extra_wait_phase_background_color">com.mcraesolutions.barbellbuddy.WAIT_PHASE_BACKGROUND_COLOR</string>
 

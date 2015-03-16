@@ -14,6 +14,7 @@ import com.mcraesolutions.watchfacelibrary.R;
 
 public class ColorPickerPreference extends DialogPreference implements ColorPickerView.OnColorChangedListener{
 
+    private static final String TAG = "ColorPickerPreference";
 
     private ColorPickerView mColorPickerView;
     private ColorPanelView mOldColorView;
@@ -81,7 +82,6 @@ public class ColorPickerPreference extends DialogPreference implements ColorPick
         final SavedState myState = new SavedState(superState);
         // Set the state's value with the class member that holds current setting value
 
-
         if(getDialog() != null && mColorPickerView != null) {
             myState.currentColor = mColorPickerView.getColor();
         }
@@ -105,15 +105,11 @@ public class ColorPickerPreference extends DialogPreference implements ColorPick
         SavedState myState = (SavedState) state;
         super.onRestoreInstanceState(myState.getSuperState());
 
-
         // Set this Preference's widget to reflect the restored state
         if(getDialog() != null && mColorPickerView != null) {
             Log.d("mColorPicker", "Restoring color!");
             mColorPickerView.setColor(myState.currentColor, true);
         }
-
-
-
     }
 
     @Override
@@ -202,18 +198,18 @@ public class ColorPickerPreference extends DialogPreference implements ColorPick
         }
     }
 
-    //@Override
-    //protected Object onGetDefaultValue(TypedArray a, int index) {
-    //    return a.getInteger(index, 0xFF000000);
-    //}
-    // TODO: why does the above cause a crash???
+    @Override
+    protected Object onGetDefaultValue(TypedArray a, int index) {
+        Log.d(TAG, "TypedArray a = " + a);
+        Log.d(TAG, "int index = " + index);
+        return a.getInteger(index, 0xFF000000);
+    }
 
+    // implementation of ColorPickerView.OnColorChangedListener
     @Override
     public void onColorChanged(int newColor) {
         mNewColorView.setColor(newColor);
     }
-
-
 
     private static class SavedState extends BaseSavedState {
         // Member that holds the setting's value

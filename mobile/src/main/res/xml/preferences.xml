@@ -16,8 +16,9 @@
             android:key="@string/extra_prepare_phase_background_color"
             android:title="@string/prepare_phase_background_color_title"
             android:summary="@string/prepare_phase_background_color_summary"
-            android:defaultValue="#F5A9A9" />
-        <!--android:dialogTitle="@string/prepare_phase_background_color_dialog_title"-->
+            android:dialogTitle="@string/prepare_phase_background_color_dialog_title"
+            android:defaultValue="0xFFF5A9A9" />
+        <!-- TODO: make dialogTitle work??? -->
 
         <CheckBoxPreference
             android:key="@string/extra_prepare_phase_start_alert_on"
@@ -44,8 +45,9 @@
             android:key="@string/extra_lift_phase_background_color"
             android:title="@string/lift_phase_background_color_title"
             android:summary="@string/lift_phase_background_color_summary"
-            android:defaultValue="#81F79F" />
-        <!-- android:dialogTitle="@string/lift_phase_background_color_dialog_title" -->
+            android:dialogTitle="@string/lift_phase_background_color_dialog_title"
+            android:defaultValue="0xFF81F79F" />
+        <!-- TODO: make dialogTitle work??? -->
 
         <CheckBoxPreference
             android:key="@string/extra_lift_phase_start_alert_on"
@@ -72,8 +74,9 @@
             android:key="@string/extra_wait_phase_background_color"
             android:title="@string/wait_phase_background_color_title"
             android:summary="@string/wait_phase_background_color_summary"
-            android:defaultValue="#73B8E6" />
-        <!-- android:dialogTitle="@string/wait_phase_background_color_dialog_title" -->
+            android:dialogTitle="@string/wait_phase_background_color_dialog_title"
+            android:defaultValue="0xFF73B8E6" />
+        <!-- TODO: make dialogTitle work??? -->
 
         <CheckBoxPreference
             android:key="@string/extra_wait_phase_start_alert_on"

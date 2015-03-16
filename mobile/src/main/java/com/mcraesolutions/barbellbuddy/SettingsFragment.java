@@ -210,12 +210,17 @@ public class SettingsFragment extends PreferenceFragment {
         catch (NullPointerException e) {
             e.printStackTrace(); // most likely getting called too soon, before Resources object is created
         }
-        // TODO: initialize summary strings
+
+        // TODO: properly initialize summary strings
+        updatePreparePhaseLengthPreferenceSummary(0);
+        updateLiftPhaseLengthPreferenceSummary(0);
+        updateWaitPhaseLengthPreferenceSummary(0);
     }
 
     private void updatePreparePhaseLengthPreferenceSummary(int value) {
+        Log.v(TAG, "updatePreparePhaseLengthPreferenceSummary");
 
-        ListPreference preparePhaseLengthPreference = (ListPreference) findPreference("prepare_phase_length_preference_key");
+        ListPreference preparePhaseLengthPreference = (ListPreference) findPreference(EXTRA_PREPARE_PHASE_LENGTH_MS);
         try {
             preparePhaseLengthPreference.setSummary(value + " seconds"); // TODO: read unit string from strings.xml
         }
@@ -225,8 +230,9 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     private void updateLiftPhaseLengthPreferenceSummary(int value) {
+        Log.v(TAG, "updateLiftPhaseLengthPreferenceSummary");
 
-        ListPreference liftPhaseLengthPreference = (ListPreference) findPreference("lift_phase_length_preference_key");
+        ListPreference liftPhaseLengthPreference = (ListPreference) findPreference(EXTRA_LIFT_PHASE_LENGTH_MS);
         try {
             liftPhaseLengthPreference.setSummary(value + " seconds"); // TODO: read unit string from strings.xml
         }
@@ -236,8 +242,9 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     private void updateWaitPhaseLengthPreferenceSummary(int value) {
+        Log.v(TAG, "updateWaitPhaseLengthPreferenceSummary");
 
-        ListPreference waitPhaseLengthPreference = (ListPreference) findPreference("wait_phase_length_preference_key");
+        ListPreference waitPhaseLengthPreference = (ListPreference) findPreference(EXTRA_WAIT_PHASE_LENGTH_MS);
         try {
             waitPhaseLengthPreference.setSummary(value + " seconds"); // TODO: read unit string from strings.xml
         }

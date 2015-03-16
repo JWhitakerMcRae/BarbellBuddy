@@ -185,7 +185,7 @@ public class SetTimerFragment extends Fragment {
         initSettingsValues();
 
         // read/default settings values
-        readSettingsValues();
+        //readSettingsValues(); // TODO: fix this so it doesn't crash and can be called
     }
 
 
