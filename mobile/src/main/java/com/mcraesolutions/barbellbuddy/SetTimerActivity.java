@@ -15,7 +15,8 @@ import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
 
-public class SetTimerActivity extends ActionBarActivity implements SetTimerFragment.OnFragmentInteractionListener, SettingsFragment.OnFragmentInteractionListener, HelpFragment.OnFragmentInteractionListener {
+public class SetTimerActivity extends ActionBarActivity
+        implements SetTimerFragment.OnFragmentInteractionListener, SettingsFragment.OnFragmentInteractionListener, SettingsFragment.ActivityCallbackInterface, HelpFragment.OnFragmentInteractionListener {
 
     private static final String TAG = "BarbellBuddy";
 
@@ -86,6 +87,18 @@ public class SetTimerActivity extends ActionBarActivity implements SetTimerFragm
     // interface callback
     public void onFragmentInteraction(Uri uri) {
         // TODO: something here?
+    }
+
+    // ****************************************************************************************** //
+
+    // getters/setters
+
+    public GoogleApiClient getGoogleApiClient() {
+        return mGoogleApiClient;
+    }
+
+    public void setGoogleApiClient(GoogleApiClient mGoogleApiClient) {
+        this.mGoogleApiClient = mGoogleApiClient;
     }
 
     // ****************************************************************************************** //

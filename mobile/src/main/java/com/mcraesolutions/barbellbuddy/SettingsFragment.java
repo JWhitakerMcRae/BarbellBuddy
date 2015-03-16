@@ -10,6 +10,13 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.wearable.DataApi;
+import com.google.android.gms.wearable.PutDataMapRequest;
+import com.google.android.gms.wearable.PutDataRequest;
+import com.google.android.gms.wearable.Wearable;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -23,6 +30,8 @@ public class SettingsFragment extends PreferenceFragment {
     private static final String TAG = "SettingsFragment";
 
     private OnFragmentInteractionListener mListener;
+
+    private ActivityCallbackInterface mCallback;
 
     /*
      * Intent Extra Keys
@@ -42,6 +51,33 @@ public class SettingsFragment extends PreferenceFragment {
     public String EXTRA_PREPARE_PHASE_START_ALERT_ON; // initialize by initSettingsValues()
     public String EXTRA_LIFT_PHASE_START_ALERT_ON; // initialize by initSettingsValues()
     public String EXTRA_WAIT_PHASE_START_ALERT_ON; // initialize by initSettingsValues()
+
+    /*
+     * PutDataMapRequest Paths (used to read DataEvent objects from phone)
+     */
+
+    // start BarbellBuddy Wear app
+    public String PATH_START_WEAR_ACTIVITY; // initialize by initSettingsValues()
+
+    // settings data path - root level
+    public String PATH_PREPARE_ROOT; // initialize by initSettingsValues()
+    public String PATH_LIFT_ROOT; // initialize by initSettingsValues()
+    public String PATH_WAIT_ROOT; // initialize by initSettingsValues()
+
+    // settings data path - set phase length (ms)
+    public String PATH_PREPARE_PHASE_LENGTH_MS; // initialize by initSettingsValues()
+    public String PATH_LIFT_PHASE_LENGTH_MS; // initialize by initSettingsValues()
+    public String PATH_WAIT_PHASE_LENGTH_MS; // initialize by initSettingsValues()
+
+    // settings data path - set phase background color
+    public String PATH_PREPARE_PHASE_BACKGROUND_COLOR; // initialize by initSettingsValues()
+    public String PATH_LIFT_PHASE_BACKGROUND_COLOR; // initialize by initSettingsValues()
+    public String PATH_WAIT_PHASE_BACKGROUND_COLOR; // initialize by initSettingsValues()
+
+    // settings data path - set phase alert on/off status
+    public String PATH_PREPARE_PHASE_START_ALERT_ON; // initialize by initSettingsValues()
+    public String PATH_LIFT_PHASE_START_ALERT_ON; // initialize by initSettingsValues()
+    public String PATH_WAIT_PHASE_START_ALERT_ON; // initialize by initSettingsValues()
 
     // ****************************************************************************************** //
 
@@ -68,9 +104,10 @@ public class SettingsFragment extends PreferenceFragment {
         super.onAttach(activity);
         try {
             mListener = (OnFragmentInteractionListener) activity;
+            mCallback = (ActivityCallbackInterface) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnFragmentInteractionListener and ActivityCallbackInterface"); // TODO: combine these to 1 interface
         }
     }
 
@@ -88,34 +125,66 @@ public class SettingsFragment extends PreferenceFragment {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
                 if (key.equals(EXTRA_PREPARE_PHASE_LENGTH_MS)) {
-                    // TODO: save value
-                    updatePreparePhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString("prepare_phase_length_key", "0"))); // TODO: fix default value
+                    int value = Integer.parseInt(sharedPreferences.getString(EXTRA_PREPARE_PHASE_LENGTH_MS, "0")); // TODO: fix default value
+                    updatePreparePhaseLengthPreferenceSummary(value);
+                    // TODO: fix preferences so this value is stored as an int not a String
+
+                    // sync preference value
+                    syncIntPreference(PATH_PREPARE_PHASE_LENGTH_MS, EXTRA_PREPARE_PHASE_LENGTH_MS, value);
                 }
                 else if (key.equals(EXTRA_LIFT_PHASE_LENGTH_MS)) {
-                    // TODO: save value
-                    updateLiftPhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString("prepare_phase_length_key", "0"))); // TODO: fix default value
+                    int value = Integer.parseInt(sharedPreferences.getString(EXTRA_LIFT_PHASE_LENGTH_MS, "0")); // TODO: fix default value
+                    updateLiftPhaseLengthPreferenceSummary(value);
+                    // TODO: fix preferences so this value is stored as an int not a String
+
+                    // sync preference value
+                    syncIntPreference(PATH_LIFT_PHASE_LENGTH_MS, EXTRA_LIFT_PHASE_LENGTH_MS, value);
+
                 }
                 else if (key.equals(EXTRA_WAIT_PHASE_LENGTH_MS)) {
-                    // TODO: save value
-                    updateWaitPhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString("prepare_phase_length_key", "0"))); // TODO: fix default value
+                    int value = Integer.parseInt(sharedPreferences.getString(EXTRA_WAIT_PHASE_LENGTH_MS, "0")); // TODO: fix default value
+                    updateWaitPhaseLengthPreferenceSummary(value);
+                    // TODO: fix preferences so this value is stored as an int not a String
+
+                    // sync preference value
+                    syncIntPreference(PATH_WAIT_PHASE_LENGTH_MS, EXTRA_WAIT_PHASE_LENGTH_MS, value);
+
                 }
                 else if (key.equals(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR)) {
-                    // TODO: save value
+                    int value = sharedPreferences.getInt(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, 0); // TODO: fix default value
+
+                    // sync preference value
+                    syncIntPreference(PATH_PREPARE_PHASE_BACKGROUND_COLOR, EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, value);
                 }
                 else if (key.equals(EXTRA_LIFT_PHASE_BACKGROUND_COLOR)) {
-                    // TODO: save value
+                    int value = sharedPreferences.getInt(EXTRA_LIFT_PHASE_BACKGROUND_COLOR, 0); // TODO: fix default value
+
+                    // sync preference value
+                    syncIntPreference(PATH_LIFT_PHASE_BACKGROUND_COLOR, EXTRA_LIFT_PHASE_BACKGROUND_COLOR, value);
                 }
                 else if (key.equals(EXTRA_WAIT_PHASE_BACKGROUND_COLOR)) {
-                    // TODO: save value
+                    int value = sharedPreferences.getInt(EXTRA_WAIT_PHASE_BACKGROUND_COLOR, 0); // TODO: fix default value
+
+                    // sync preference value
+                    syncIntPreference(PATH_WAIT_PHASE_BACKGROUND_COLOR, EXTRA_WAIT_PHASE_BACKGROUND_COLOR, value);
                 }
                 else if (key.equals(EXTRA_PREPARE_PHASE_START_ALERT_ON)) {
-                    // TODO: save value
+                    boolean value = sharedPreferences.getBoolean(EXTRA_PREPARE_PHASE_START_ALERT_ON, true); // TODO: fix default value
+
+                    // sync preference value
+                    syncBooleanPreference(PATH_PREPARE_PHASE_START_ALERT_ON, EXTRA_PREPARE_PHASE_START_ALERT_ON, value);
                 }
                 else if (key.equals(EXTRA_LIFT_PHASE_START_ALERT_ON)) {
-                    // TODO: save value
+                    boolean value = sharedPreferences.getBoolean(EXTRA_LIFT_PHASE_START_ALERT_ON, true); // TODO: fix default value
+
+                    // sync preference value
+                    syncBooleanPreference(PATH_LIFT_PHASE_START_ALERT_ON, EXTRA_LIFT_PHASE_START_ALERT_ON, value);
                 }
                 else if (key.equals(EXTRA_WAIT_PHASE_START_ALERT_ON)) {
-                    // TODO: save value
+                    boolean value = sharedPreferences.getBoolean(EXTRA_WAIT_PHASE_START_ALERT_ON, true); // TODO: fix default value
+
+                    // sync preference value
+                    syncBooleanPreference(PATH_WAIT_PHASE_START_ALERT_ON, EXTRA_WAIT_PHASE_START_ALERT_ON, value);
                 }
             }
         });
@@ -206,15 +275,38 @@ public class SettingsFragment extends PreferenceFragment {
             EXTRA_PREPARE_PHASE_START_ALERT_ON = getResources().getString(R.string.extra_prepare_phase_start_alert_on);
             EXTRA_LIFT_PHASE_START_ALERT_ON = getResources().getString(R.string.extra_lift_phase_start_alert_on);
             EXTRA_WAIT_PHASE_START_ALERT_ON = getResources().getString(R.string.extra_wait_phase_start_alert_on);
+
+            /*
+             * PutDataMapRequest Paths (used to read DataEvent objects from phone)
+             */
+
+            // start BarbellBuddy Wear app
+            PATH_START_WEAR_ACTIVITY = getResources().getString(R.string.path_start_wear_activity);
+
+            // settings data path - root level
+            PATH_PREPARE_ROOT = getResources().getString(R.string.path_prepare_root);
+            PATH_LIFT_ROOT = getResources().getString(R.string.path_lift_root);
+            PATH_WAIT_ROOT = getResources().getString(R.string.path_wait_root);
+
+            // settings data path - set phase length (ms)
+            PATH_PREPARE_PHASE_LENGTH_MS = getResources().getString(R.string.path_prepare_phase_length_ms);
+            PATH_LIFT_PHASE_LENGTH_MS = getResources().getString(R.string.path_lift_phase_length_ms);
+            PATH_WAIT_PHASE_LENGTH_MS = getResources().getString(R.string.path_wait_phase_length_ms);
+
+            // settings data path - set phase background color
+            PATH_PREPARE_PHASE_BACKGROUND_COLOR = getResources().getString(R.string.path_prepare_phase_background_color);
+            PATH_LIFT_PHASE_BACKGROUND_COLOR = getResources().getString(R.string.path_lift_phase_background_color);
+            PATH_WAIT_PHASE_BACKGROUND_COLOR = getResources().getString(R.string.path_wait_phase_background_color);
         }
         catch (NullPointerException e) {
             e.printStackTrace(); // most likely getting called too soon, before Resources object is created
         }
 
         // TODO: properly initialize summary strings
-        updatePreparePhaseLengthPreferenceSummary(0);
-        updateLiftPhaseLengthPreferenceSummary(0);
-        updateWaitPhaseLengthPreferenceSummary(0);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        updatePreparePhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString(EXTRA_PREPARE_PHASE_LENGTH_MS, "0"))); // TODO: fix default value
+        updateLiftPhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString(EXTRA_LIFT_PHASE_LENGTH_MS, "0"))); // TODO: fix default value
+        updateWaitPhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString(EXTRA_WAIT_PHASE_LENGTH_MS, "0"))); // TODO: fix default value
     }
 
     private void updatePreparePhaseLengthPreferenceSummary(int value) {
@@ -251,5 +343,43 @@ public class SettingsFragment extends PreferenceFragment {
         catch (NullPointerException e) {
             e.printStackTrace();
         }
+    }
+
+    // *** start sync preference data ***
+
+    private PendingResult<DataApi.DataItemResult> syncIntPreference(String path, String key, int value) {
+
+        PutDataMapRequest putDataMapReq = PutDataMapRequest.create(path);
+        putDataMapReq.getDataMap().putInt(key, value);
+        PutDataRequest putDataReq = putDataMapReq.asPutDataRequest();
+        PendingResult<DataApi.DataItemResult> pendingResult =
+                Wearable.DataApi.putDataItem(mCallback.getGoogleApiClient(), putDataReq);
+        return pendingResult;
+    }
+
+    private PendingResult<DataApi.DataItemResult> syncBooleanPreference(String path, String key, boolean value) {
+
+        PutDataMapRequest putDataMapReq = PutDataMapRequest.create(path);
+        putDataMapReq.getDataMap().putBoolean(key, value);
+        PutDataRequest putDataReq = putDataMapReq.asPutDataRequest();
+        PendingResult<DataApi.DataItemResult> pendingResult =
+                Wearable.DataApi.putDataItem(mCallback.getGoogleApiClient(), putDataReq);
+        return pendingResult;
+    }
+
+    private PendingResult<DataApi.DataItemResult> syncStringPreference(String path, String key, String value) {
+
+        PutDataMapRequest putDataMapReq = PutDataMapRequest.create(path);
+        putDataMapReq.getDataMap().putString(key, value);
+        PutDataRequest putDataReq = putDataMapReq.asPutDataRequest();
+        PendingResult<DataApi.DataItemResult> pendingResult =
+                Wearable.DataApi.putDataItem(mCallback.getGoogleApiClient(), putDataReq);
+        return pendingResult;
+    }
+
+    // ****************************************************************************************** //
+
+    public interface ActivityCallbackInterface {
+        public GoogleApiClient getGoogleApiClient();
     }
 }
