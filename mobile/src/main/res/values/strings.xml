@@ -14,13 +14,19 @@
     <string name="button_set_timer_start">Start</string>
     <string name="button_set_timer_stop">Stop</string>
 
-    <!-- preferences xml strings -->
+    <!--
+    preferences xml strings
+    -->
+
     <string name="prepare_phase_length_preference_title">Phase Length</string>
     <string name="prepare_phase_length_preference_summary"></string>
     <string name="prepare_phase_length_preference_dialog_title">Select phase length:</string>
 
+    <string name="prepare_phase_background_color_title">Background Color</string>
+    <string name="prepare_phase_background_color_summary">Watchface background color for phase</string>
+    <string name="prepare_phase_background_color_dialog_title">Select background color:</string>
+
     <string name="prepare_phase_preferences">Prepare</string>
-    <string name="prepare_phase_vibrate_on_preference_key">prepare_phase_vibrate_on_preference_key</string>
     <string name="prepare_phase_vibrate_on_title">Vibrate Alert</string>
     <string name="prepare_phase_vibrate_on_summary">Issue vibration for start of phase</string>
 
@@ -28,8 +34,11 @@
     <string name="lift_phase_length_preference_summary"></string>
     <string name="lift_phase_length_preference_dialog_title">Select phase length:</string>
 
+    <string name="lift_phase_background_color_title">Background Color</string>
+    <string name="lift_phase_background_color_summary">Watchface background color for phase</string>
+    <string name="lift_phase_background_color_dialog_title">Select background color:</string>
+
     <string name="lift_phase_preferences">Lift</string>
-    <string name="lift_phase_vibrate_on_preference_key">lift_phase_vibrate_on_preference_key</string>
     <string name="lift_phase_vibrate_on_title">Vibrate Alert</string>
     <string name="lift_phase_vibrate_on_summary">Issue vibration for start of phase</string>
 
@@ -37,8 +46,11 @@
     <string name="wait_phase_length_preference_summary"></string>
     <string name="wait_phase_length_preference_dialog_title">Select phase length:</string>
 
+    <string name="wait_phase_background_color_title">Background Color</string>
+    <string name="wait_phase_background_color_summary">Watchface background color for phase</string>
+    <string name="wait_phase_background_color_dialog_title">Select background color:</string>
+
     <string name="wait_phase_preferences">Wait</string>
-    <string name="wait_phase_vibrate_on_preference_key">wait_phase_vibrate_on_preference_key</string>
     <string name="wait_phase_vibrate_on_title">Vibrate Alert</string>
     <string name="wait_phase_vibrate_on_summary">Issue vibration for start of phase</string>
 

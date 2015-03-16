@@ -5,19 +5,27 @@
         android:title="@string/prepare_phase_preferences">
 
         <ListPreference
-            android:key="prepare_phase_length_preference_key"
+            android:key="@string/extra_prepare_phase_length_ms"
             android:title="@string/prepare_phase_length_preference_title"
             android:summary="@string/prepare_phase_length_preference_summary"
+            android:dialogTitle="@string/prepare_phase_length_preference_dialog_title"
             android:entries="@array/prepare_phase_length_preference_entries"
-            android:entryValues="@array/prepare_phase_length_preference_entry_values"
-            android:dialogTitle="@string/prepare_phase_length_preference_dialog_title" />
+            android:entryValues="@array/prepare_phase_length_preference_entry_values"/>
+
+        <com.mcraesolutions.utils.ColorPickerPreference
+            android:key="@string/extra_prepare_phase_background_color"
+            android:title="@string/prepare_phase_background_color_title"
+            android:summary="@string/prepare_phase_background_color_summary"
+            android:defaultValue="#F5A9A9" />
+        <!--android:dialogTitle="@string/prepare_phase_background_color_dialog_title"-->
 
         <CheckBoxPreference
-            android:key="@string/prepare_phase_vibrate_on_preference_key"
+            android:key="@string/extra_prepare_phase_start_alert_on"
             android:title="@string/prepare_phase_vibrate_on_title"
             android:summary="@string/prepare_phase_vibrate_on_summary"
             android:defaultValue="true" />
-        <!-- TODO: tie defaultValue to library->defaults.xml value -->
+
+        <!-- TODO: tie defaultValues to library->defaults.xml value -->
 
     </PreferenceCategory>
 
@@ -25,18 +33,26 @@
         android:title="@string/lift_phase_preferences">
 
         <ListPreference
-            android:key="lift_phase_length_preference_key"
+            android:key="@string/extra_lift_phase_length_ms"
             android:title="@string/lift_phase_length_preference_title"
             android:summary="@string/lift_phase_length_preference_summary"
             android:entries="@array/lift_phase_length_preference_entries"
             android:entryValues="@array/lift_phase_length_preference_entry_values"
             android:dialogTitle="@string/lift_phase_length_preference_dialog_title" />
 
+        <com.mcraesolutions.utils.ColorPickerPreference
+            android:key="@string/extra_lift_phase_background_color"
+            android:title="@string/lift_phase_background_color_title"
+            android:summary="@string/lift_phase_background_color_summary"
+            android:defaultValue="#81F79F" />
+        <!-- android:dialogTitle="@string/lift_phase_background_color_dialog_title" -->
+
         <CheckBoxPreference
-            android:key="@string/lift_phase_vibrate_on_preference_key"
+            android:key="@string/extra_lift_phase_start_alert_on"
             android:title="@string/lift_phase_vibrate_on_title"
             android:summary="@string/lift_phase_vibrate_on_summary"
             android:defaultValue="false" />
+
         <!-- TODO: tie defaultValue to library->defaults.xml value -->
 
     </PreferenceCategory>
@@ -45,18 +61,26 @@
         android:title="@string/wait_phase_preferences">
 
         <ListPreference
-            android:key="wait_phase_length_preference_key"
+            android:key="@string/extra_wait_phase_length_ms"
             android:title="@string/wait_phase_length_preference_title"
             android:summary="@string/wait_phase_length_preference_summary"
             android:entries="@array/wait_phase_length_preference_entries"
             android:entryValues="@array/wait_phase_length_preference_entry_values"
             android:dialogTitle="@string/wait_phase_length_preference_dialog_title" />
 
+        <com.mcraesolutions.utils.ColorPickerPreference
+            android:key="@string/extra_wait_phase_background_color"
+            android:title="@string/wait_phase_background_color_title"
+            android:summary="@string/wait_phase_background_color_summary"
+            android:defaultValue="#73B8E6" />
+        <!-- android:dialogTitle="@string/wait_phase_background_color_dialog_title" -->
+
         <CheckBoxPreference
-            android:key="@string/wait_phase_vibrate_on_preference_key"
+            android:key="@string/extra_wait_phase_start_alert_on"
             android:title="@string/wait_phase_vibrate_on_title"
             android:summary="@string/wait_phase_vibrate_on_summary"
             android:defaultValue="false" />
+
         <!-- TODO: tie defaultValue to library->defaults.xml value -->
 
     </PreferenceCategory>

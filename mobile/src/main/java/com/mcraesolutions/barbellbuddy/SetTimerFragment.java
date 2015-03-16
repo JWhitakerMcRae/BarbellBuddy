@@ -32,15 +32,15 @@ public class SetTimerFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-        /*
-         * Broadcast Actions
-         */
+    /*
+     * Broadcast Actions
+     */
 
     public String BROADCAST_UPDATE_SETTINGS_VALUES; // initialize by initSettingsValues()
 
-        /*
-         * Intent Extra Keys
-         */
+    /*
+     * Intent Extra Keys
+     */
 
     // settings value - set phase length (value should be phase length as int, should be zero or positive and in milliseconds)
     public String EXTRA_PREPARE_PHASE_LENGTH_MS; // initialize by initSettingsValues()
@@ -163,11 +163,7 @@ public class SetTimerFragment extends Fragment {
 
         // NOTE: although the wear app keeps screen on here the mobile app does not
 
-        // initialize settings values from resource file
-        initSettingsValues();
-
-        // read/default settings values
-        readSettingsValues();
+        // NOTE: although the wear app initializes settings values here the mobile app does this in onResume
 
         // find watchface object
         mWatchface = (WatchfaceLayout) getActivity().findViewById(R.id.watchfaceLayout_watchface);
@@ -181,7 +177,17 @@ public class SetTimerFragment extends Fragment {
 
     // onStart
 
-    // onResume
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // initialize settings values from resource file
+        initSettingsValues();
+
+        // read/default settings values
+        readSettingsValues();
+    }
+
 
     // onPause
 

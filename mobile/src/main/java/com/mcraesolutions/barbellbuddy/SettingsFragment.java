@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +23,25 @@ public class SettingsFragment extends PreferenceFragment {
     private static final String TAG = "SettingsFragment";
 
     private OnFragmentInteractionListener mListener;
+
+    /*
+     * Intent Extra Keys
+     */
+
+    // settings value - set phase length (value should be phase length as int, should be zero or positive and in milliseconds)
+    public String EXTRA_PREPARE_PHASE_LENGTH_MS; // initialize by initSettingsValues()
+    public String EXTRA_LIFT_PHASE_LENGTH_MS; // initialize by initSettingsValues()
+    public String EXTRA_WAIT_PHASE_LENGTH_MS; // initialize by initSettingsValues()
+
+    // settings value - set phase background color (value should be color value as int, usually displayed in hex)
+    public String EXTRA_PREPARE_PHASE_BACKGROUND_COLOR; // initialize by initSettingsValues()
+    public String EXTRA_LIFT_PHASE_BACKGROUND_COLOR; // initialize by initSettingsValues()
+    public String EXTRA_WAIT_PHASE_BACKGROUND_COLOR; // initialize by initSettingsValues()
+
+    // settings value - set phase alert on/off status (value should be boolean, true = on, false = off)
+    public String EXTRA_PREPARE_PHASE_START_ALERT_ON; // initialize by initSettingsValues()
+    public String EXTRA_LIFT_PHASE_START_ALERT_ON; // initialize by initSettingsValues()
+    public String EXTRA_WAIT_PHASE_START_ALERT_ON; // initialize by initSettingsValues()
 
     // ****************************************************************************************** //
 
@@ -67,25 +87,34 @@ public class SettingsFragment extends PreferenceFragment {
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
-                if (key.equals("prepare_phase_length_preference_key")) {
+                if (key.equals(EXTRA_PREPARE_PHASE_LENGTH_MS)) {
                     // TODO: save value
                     updatePreparePhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString("prepare_phase_length_key", "0"))); // TODO: fix default value
                 }
-                else if (key.equals("prepare_phase_vibrate_on_preference_key")) {
-                    // TODO: save value
-                }
-                else if (key.equals("lift_phase_length_preference_key")) {
+                else if (key.equals(EXTRA_LIFT_PHASE_LENGTH_MS)) {
                     // TODO: save value
                     updateLiftPhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString("prepare_phase_length_key", "0"))); // TODO: fix default value
                 }
-                else if (key.equals("lift_phase_vibrate_on_preference_key")) {
-                    // TODO: save value
-                }
-                else if (key.equals("wait_phase_length_preference_key")) {
+                else if (key.equals(EXTRA_WAIT_PHASE_LENGTH_MS)) {
                     // TODO: save value
                     updateWaitPhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString("prepare_phase_length_key", "0"))); // TODO: fix default value
                 }
-                else if (key.equals("wait_phase_vibrate_on_preference_key")) {
+                else if (key.equals(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR)) {
+                    // TODO: save value
+                }
+                else if (key.equals(EXTRA_LIFT_PHASE_BACKGROUND_COLOR)) {
+                    // TODO: save value
+                }
+                else if (key.equals(EXTRA_WAIT_PHASE_BACKGROUND_COLOR)) {
+                    // TODO: save value
+                }
+                else if (key.equals(EXTRA_PREPARE_PHASE_START_ALERT_ON)) {
+                    // TODO: save value
+                }
+                else if (key.equals(EXTRA_LIFT_PHASE_START_ALERT_ON)) {
+                    // TODO: save value
+                }
+                else if (key.equals(EXTRA_WAIT_PHASE_START_ALERT_ON)) {
                     // TODO: save value
                 }
             }
@@ -94,7 +123,15 @@ public class SettingsFragment extends PreferenceFragment {
 
     // onCreateView
 
-    // onActivityCreated
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onActivityCreated");
+        //}
+        super.onActivityCreated(savedInstanceState);
+
+        // NOTE: although the wear app initializes settings values here the mobile app does this in onResume
+    }
 
     // onStart
 
@@ -102,7 +139,7 @@ public class SettingsFragment extends PreferenceFragment {
     public void onResume() {
         super.onResume();
 
-        // initialize settings values
+        // initialize settings values from resource file
         initSettingsValues();
     }
 
@@ -149,7 +186,30 @@ public class SettingsFragment extends PreferenceFragment {
     // ****************************************************************************************** //
 
     private void initSettingsValues() {
-        // TODO: read settings to class variables
+
+        try {
+            /*
+             * Intent Extra Keys
+             */
+
+            // settings value - set phase length (value should be phase length as int, should be zero or positive and in milliseconds)
+            EXTRA_PREPARE_PHASE_LENGTH_MS = getResources().getString(R.string.extra_prepare_phase_length_ms);
+            EXTRA_LIFT_PHASE_LENGTH_MS = getResources().getString(R.string.extra_lift_phase_length_ms);
+            EXTRA_WAIT_PHASE_LENGTH_MS = getResources().getString(R.string.extra_wait_phase_length_ms);
+
+            // settings value - set phase background color (value should be color value as int, usually displayed in hex)
+            EXTRA_PREPARE_PHASE_BACKGROUND_COLOR = getResources().getString(R.string.extra_prepare_phase_background_color);
+            EXTRA_LIFT_PHASE_BACKGROUND_COLOR = getResources().getString(R.string.extra_lift_phase_background_color);
+            EXTRA_WAIT_PHASE_BACKGROUND_COLOR = getResources().getString(R.string.extra_wait_phase_background_color);
+
+            // settings value - set phase alert on/off status (value should be boolean, true = on, false = off)
+            EXTRA_PREPARE_PHASE_START_ALERT_ON = getResources().getString(R.string.extra_prepare_phase_start_alert_on);
+            EXTRA_LIFT_PHASE_START_ALERT_ON = getResources().getString(R.string.extra_lift_phase_start_alert_on);
+            EXTRA_WAIT_PHASE_START_ALERT_ON = getResources().getString(R.string.extra_wait_phase_start_alert_on);
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace(); // most likely getting called too soon, before Resources object is created
+        }
         // TODO: initialize summary strings
     }
 
