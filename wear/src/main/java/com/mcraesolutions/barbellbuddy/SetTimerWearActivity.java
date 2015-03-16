@@ -66,17 +66,8 @@ public class SetTimerWearActivity extends Activity {
 
         setContentView(R.layout.activity_set_timer_wear);
 
-        // start listener service
-        startService(new Intent(this, SettingsListenerService.class));
-
         // keep the watch screen from timing out
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-        // initialize settings values from resource file
-        initSettingsValues();
-
-        // read/default settings values
-        readSettingsValues();
 
         // create on layout inflated listener
         final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
@@ -94,11 +85,25 @@ public class SetTimerWearActivity extends Activity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        // start listener service
+        startService(new Intent(this, SettingsListenerService.class));
+    }
+
+    @Override
     protected void onResume() {
         //if (Log.isLoggable(TAG, Log.VERBOSE)) {
         Log.v(TAG, "onResume");
         //}
         super.onResume();
+
+        // initialize settings values from resource file
+        initSettingsValues();
+
+        // read/default settings values
+        readSettingsValues();
 
         try {
             // register update settings receiver
@@ -122,6 +127,12 @@ public class SetTimerWearActivity extends Activity {
             unregisterReceiver(mUpdateSettingsReceiver);
         }
     }
+
+    // onStop
+
+    // onDestroy
+
+    // ****************************************************************************************** //
 
     private void initSettingsValues() {
 
@@ -161,7 +172,7 @@ public class SetTimerWearActivity extends Activity {
         //if (Log.isLoggable(TAG, Log.VERBOSE)) {
         Log.v(TAG, "readSettingsValues");
         //}
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         try {
             // set phase lengths (ms) -- set from settings (phone)

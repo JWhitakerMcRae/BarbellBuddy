@@ -318,7 +318,7 @@ public class SettingsListenerService extends WearableListenerService {
             }
 
             // save shared preference (read by activity on start)
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(EXTRA_PREPARE_PHASE_LENGTH_MS, value);
             editor.commit();
@@ -345,7 +345,7 @@ public class SettingsListenerService extends WearableListenerService {
             }
 
             // save shared preference (read by activity on start)
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, value);
             editor.commit();
@@ -372,7 +372,7 @@ public class SettingsListenerService extends WearableListenerService {
             }
 
             // save shared preference (read by activity on start)
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putBoolean(EXTRA_PREPARE_PHASE_START_ALERT_ON, value);
             editor.commit();
@@ -399,7 +399,7 @@ public class SettingsListenerService extends WearableListenerService {
             }
 
             // save shared preference (read by activity on start)
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(EXTRA_LIFT_PHASE_LENGTH_MS, value);
             editor.commit();
@@ -426,7 +426,7 @@ public class SettingsListenerService extends WearableListenerService {
             }
 
             // save shared preference (read by activity on start)
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(EXTRA_LIFT_PHASE_BACKGROUND_COLOR, value);
             editor.commit();
@@ -453,7 +453,7 @@ public class SettingsListenerService extends WearableListenerService {
             }
 
             // save shared preference (read by activity on start)
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putBoolean(EXTRA_LIFT_PHASE_START_ALERT_ON, value);
             editor.commit();
@@ -480,7 +480,7 @@ public class SettingsListenerService extends WearableListenerService {
             }
 
             // save shared preference (read by activity on start)
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(EXTRA_WAIT_PHASE_LENGTH_MS, value);
             editor.commit();
@@ -507,7 +507,7 @@ public class SettingsListenerService extends WearableListenerService {
             }
 
             // save shared preference (read by activity on start)
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(EXTRA_WAIT_PHASE_BACKGROUND_COLOR, value);
             editor.commit();
@@ -534,7 +534,7 @@ public class SettingsListenerService extends WearableListenerService {
             }
 
             // save shared preference (read by activity on start)
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putBoolean(EXTRA_WAIT_PHASE_START_ALERT_ON, value);
             editor.commit();
