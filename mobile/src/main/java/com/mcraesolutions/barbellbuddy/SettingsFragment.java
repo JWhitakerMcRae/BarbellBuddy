@@ -131,6 +131,9 @@ public class SettingsFragment extends PreferenceFragment {
 
             @Override
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "onSharedPreferenceChanged");
+                //}
 
                 if (key.equals(EXTRA_PREPARE_PHASE_LENGTH_MS)) {
                     int value = Integer.parseInt(sharedPreferences.getString(EXTRA_PREPARE_PHASE_LENGTH_MS, "0")); // TODO: fix default value
