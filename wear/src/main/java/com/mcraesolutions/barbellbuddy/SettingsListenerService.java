@@ -401,7 +401,7 @@ public class SettingsListenerService extends WearableListenerService {
         //}
 
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
-        if (map.keySet().contains(EXTRA_LIFT_PHASE_START_ALERT_ON)) {
+        if (map.keySet().contains(EXTRA_PREPARE_PHASE_START_ALERT_ON)) {
             boolean value = map.getBoolean(EXTRA_PREPARE_PHASE_START_ALERT_ON);
             if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "Received new prepare phase start alert on: " + value);
@@ -581,7 +581,7 @@ public class SettingsListenerService extends WearableListenerService {
         //}
 
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
-        if (map.keySet().contains(EXTRA_WAIT_PHASE_BACKGROUND_COLOR)) {
+        if (map.keySet().contains(EXTRA_WAIT_PHASE_START_ALERT_ON)) {
             boolean value = map.getBoolean(EXTRA_WAIT_PHASE_START_ALERT_ON);
             if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "Received new wait phase start alert on/off: " + value);

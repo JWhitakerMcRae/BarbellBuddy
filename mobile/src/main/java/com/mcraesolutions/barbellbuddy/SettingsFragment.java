@@ -26,7 +26,7 @@ import com.mcraesolutions.watchfacelibrary.WatchfaceLayout;
  * Use the {@link SettingsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SettingsFragment extends PreferenceFragment {
+public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final String TAG = "SettingsFragment";
 
@@ -125,89 +125,6 @@ public class SettingsFragment extends PreferenceFragment {
 
         // load preferences layout from XML
         addPreferencesFromResource(R.xml.preferences);
-
-        // register preferences onChange listeners
-        PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(new SharedPreferences.OnSharedPreferenceChangeListener() {
-
-            @Override
-            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-                Log.v(TAG, "onSharedPreferenceChanged");
-                //}
-
-                if (key.equals(EXTRA_PREPARE_PHASE_LENGTH_MS)) {
-                    int value = Integer.parseInt(sharedPreferences.getString(EXTRA_PREPARE_PHASE_LENGTH_MS, "0")); // TODO: fix default value
-                    updatePreparePhaseLengthPreferenceSummary(value);
-                    // TODO: fix preferences so this value is stored as an int not a String
-
-                    // sync preference value
-                    //mCallback.getWatchface().setPreparePhaseLength_ms(value); // TODO: why does this crash? use service to sync instead??
-                    syncIntPreference(PATH_PREPARE_PHASE_LENGTH_MS, EXTRA_PREPARE_PHASE_LENGTH_MS, value);
-                }
-                else if (key.equals(EXTRA_LIFT_PHASE_LENGTH_MS)) {
-                    int value = Integer.parseInt(sharedPreferences.getString(EXTRA_LIFT_PHASE_LENGTH_MS, "0")); // TODO: fix default value
-                    updateLiftPhaseLengthPreferenceSummary(value);
-                    // TODO: fix preferences so this value is stored as an int not a String
-
-                    // sync preference value
-                    //mCallback.getWatchface().setLiftPhaseLength_ms(value); // TODO: why does this crash? use service to sync instead??
-                    syncIntPreference(PATH_LIFT_PHASE_LENGTH_MS, EXTRA_LIFT_PHASE_LENGTH_MS, value);
-
-                }
-                else if (key.equals(EXTRA_WAIT_PHASE_LENGTH_MS)) {
-                    int value = Integer.parseInt(sharedPreferences.getString(EXTRA_WAIT_PHASE_LENGTH_MS, "0")); // TODO: fix default value
-                    updateWaitPhaseLengthPreferenceSummary(value);
-                    // TODO: fix preferences so this value is stored as an int not a String
-
-                    // sync preference value
-                    //mCallback.getWatchface().setWaitPhaseLength_ms(value); // TODO: why does this crash? use service to sync instead??
-                    syncIntPreference(PATH_WAIT_PHASE_LENGTH_MS, EXTRA_WAIT_PHASE_LENGTH_MS, value);
-
-                }
-                else if (key.equals(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR)) {
-                    int value = sharedPreferences.getInt(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, 0); // TODO: fix default value
-
-                    // sync preference value
-                    //mCallback.getWatchface().setPreparePhaseBackgroundColor(value); // TODO: why does this crash? use service to sync instead??
-                    syncIntPreference(PATH_PREPARE_PHASE_BACKGROUND_COLOR, EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, value);
-                }
-                else if (key.equals(EXTRA_LIFT_PHASE_BACKGROUND_COLOR)) {
-                    int value = sharedPreferences.getInt(EXTRA_LIFT_PHASE_BACKGROUND_COLOR, 0); // TODO: fix default value
-
-                    // sync preference value
-                    //mCallback.getWatchface().setLiftPhaseBackgroundColor(value); // TODO: why does this crash? use service to sync instead??
-                    syncIntPreference(PATH_LIFT_PHASE_BACKGROUND_COLOR, EXTRA_LIFT_PHASE_BACKGROUND_COLOR, value);
-                }
-                else if (key.equals(EXTRA_WAIT_PHASE_BACKGROUND_COLOR)) {
-                    int value = sharedPreferences.getInt(EXTRA_WAIT_PHASE_BACKGROUND_COLOR, 0); // TODO: fix default value
-
-                    // sync preference value
-                    //mCallback.getWatchface().setWaitPhaseBackgroundColor(value); // TODO: why does this crash? use service to sync instead??
-                    syncIntPreference(PATH_WAIT_PHASE_BACKGROUND_COLOR, EXTRA_WAIT_PHASE_BACKGROUND_COLOR, value);
-                }
-                else if (key.equals(EXTRA_PREPARE_PHASE_START_ALERT_ON)) {
-                    boolean value = sharedPreferences.getBoolean(EXTRA_PREPARE_PHASE_START_ALERT_ON, true); // TODO: fix default value
-
-                    // sync preference value
-                    //mCallback.getWatchface().setPreparePhaseStartAlertOn(value); // TODO: why does this crash? use service to sync instead??
-                    syncBooleanPreference(PATH_PREPARE_PHASE_START_ALERT_ON, EXTRA_PREPARE_PHASE_START_ALERT_ON, value);
-                }
-                else if (key.equals(EXTRA_LIFT_PHASE_START_ALERT_ON)) {
-                    boolean value = sharedPreferences.getBoolean(EXTRA_LIFT_PHASE_START_ALERT_ON, true); // TODO: fix default value
-
-                    // sync preference value
-                    //mCallback.getWatchface().setLiftPhaseStartAlertOn(value); // TODO: why does this crash? use service to sync instead??
-                    syncBooleanPreference(PATH_LIFT_PHASE_START_ALERT_ON, EXTRA_LIFT_PHASE_START_ALERT_ON, value);
-                }
-                else if (key.equals(EXTRA_WAIT_PHASE_START_ALERT_ON)) {
-                    boolean value = sharedPreferences.getBoolean(EXTRA_WAIT_PHASE_START_ALERT_ON, true); // TODO: fix default value
-
-                    // sync preference value
-                    //mCallback.getWatchface().setWaitPhaseStartAlertOn(value); // TODO: why does this crash? use service to sync instead??
-                    syncBooleanPreference(PATH_WAIT_PHASE_START_ALERT_ON, EXTRA_WAIT_PHASE_START_ALERT_ON, value);
-                }
-            }
-        });
     }
 
     // onCreateView
@@ -233,9 +150,21 @@ public class SettingsFragment extends PreferenceFragment {
 
         // initialize settings values from resource file
         initSettingsValues();
+
+        // register preferences onChange listeners
+        PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).registerOnSharedPreferenceChangeListener(this);
     }
 
-    // onPause
+    @Override
+    public void onPause() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onPause");
+        //}
+        super.onPause();
+
+        // register preferences onChange listeners
+        PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).unregisterOnSharedPreferenceChangeListener(this);
+    }
 
     // onStop
 
@@ -251,6 +180,89 @@ public class SettingsFragment extends PreferenceFragment {
         super.onDetach();
 
         mListener = null;
+    }
+
+    // ****************************************************************************************** //
+
+    // SharedPreferences.OnSharedPreferenceChangeListener
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onSharedPreferenceChanged");
+        //}
+
+        if (key.equals(EXTRA_PREPARE_PHASE_LENGTH_MS)) {
+            int value = Integer.parseInt(sharedPreferences.getString(EXTRA_PREPARE_PHASE_LENGTH_MS, "0")); // TODO: fix default value
+            updatePreparePhaseLengthPreferenceSummary(value);
+            // TODO: fix preferences so this value is stored as an int not a String
+
+            // sync preference value
+            //mCallback.getWatchface().setPreparePhaseLength_ms(value); // TODO: why does this crash? use service to sync instead??
+            syncIntPreference(PATH_PREPARE_PHASE_LENGTH_MS, EXTRA_PREPARE_PHASE_LENGTH_MS, value);
+        }
+        else if (key.equals(EXTRA_LIFT_PHASE_LENGTH_MS)) {
+            int value = Integer.parseInt(sharedPreferences.getString(EXTRA_LIFT_PHASE_LENGTH_MS, "0")); // TODO: fix default value
+            updateLiftPhaseLengthPreferenceSummary(value);
+            // TODO: fix preferences so this value is stored as an int not a String
+
+            // sync preference value
+            //mCallback.getWatchface().setLiftPhaseLength_ms(value); // TODO: why does this crash? use service to sync instead??
+            syncIntPreference(PATH_LIFT_PHASE_LENGTH_MS, EXTRA_LIFT_PHASE_LENGTH_MS, value);
+
+        }
+        else if (key.equals(EXTRA_WAIT_PHASE_LENGTH_MS)) {
+            int value = Integer.parseInt(sharedPreferences.getString(EXTRA_WAIT_PHASE_LENGTH_MS, "0")); // TODO: fix default value
+            updateWaitPhaseLengthPreferenceSummary(value);
+            // TODO: fix preferences so this value is stored as an int not a String
+
+            // sync preference value
+            //mCallback.getWatchface().setWaitPhaseLength_ms(value); // TODO: why does this crash? use service to sync instead??
+            syncIntPreference(PATH_WAIT_PHASE_LENGTH_MS, EXTRA_WAIT_PHASE_LENGTH_MS, value);
+
+        }
+        else if (key.equals(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR)) {
+            int value = sharedPreferences.getInt(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, 0); // TODO: fix default value
+
+            // sync preference value
+            //mCallback.getWatchface().setPreparePhaseBackgroundColor(value); // TODO: why does this crash? use service to sync instead??
+            syncIntPreference(PATH_PREPARE_PHASE_BACKGROUND_COLOR, EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, value);
+        }
+        else if (key.equals(EXTRA_LIFT_PHASE_BACKGROUND_COLOR)) {
+            int value = sharedPreferences.getInt(EXTRA_LIFT_PHASE_BACKGROUND_COLOR, 0); // TODO: fix default value
+
+            // sync preference value
+            //mCallback.getWatchface().setLiftPhaseBackgroundColor(value); // TODO: why does this crash? use service to sync instead??
+            syncIntPreference(PATH_LIFT_PHASE_BACKGROUND_COLOR, EXTRA_LIFT_PHASE_BACKGROUND_COLOR, value);
+        }
+        else if (key.equals(EXTRA_WAIT_PHASE_BACKGROUND_COLOR)) {
+            int value = sharedPreferences.getInt(EXTRA_WAIT_PHASE_BACKGROUND_COLOR, 0); // TODO: fix default value
+
+            // sync preference value
+            //mCallback.getWatchface().setWaitPhaseBackgroundColor(value); // TODO: why does this crash? use service to sync instead??
+            syncIntPreference(PATH_WAIT_PHASE_BACKGROUND_COLOR, EXTRA_WAIT_PHASE_BACKGROUND_COLOR, value);
+        }
+        else if (key.equals(EXTRA_PREPARE_PHASE_START_ALERT_ON)) {
+            boolean value = sharedPreferences.getBoolean(EXTRA_PREPARE_PHASE_START_ALERT_ON, true); // TODO: fix default value
+
+            // sync preference value
+            //mCallback.getWatchface().setPreparePhaseStartAlertOn(value); // TODO: why does this crash? use service to sync instead??
+            syncBooleanPreference(PATH_PREPARE_PHASE_START_ALERT_ON, EXTRA_PREPARE_PHASE_START_ALERT_ON, value);
+        }
+        else if (key.equals(EXTRA_LIFT_PHASE_START_ALERT_ON)) {
+            boolean value = sharedPreferences.getBoolean(EXTRA_LIFT_PHASE_START_ALERT_ON, true); // TODO: fix default value
+
+            // sync preference value
+            //mCallback.getWatchface().setLiftPhaseStartAlertOn(value); // TODO: why does this crash? use service to sync instead??
+            syncBooleanPreference(PATH_LIFT_PHASE_START_ALERT_ON, EXTRA_LIFT_PHASE_START_ALERT_ON, value);
+        }
+        else if (key.equals(EXTRA_WAIT_PHASE_START_ALERT_ON)) {
+            boolean value = sharedPreferences.getBoolean(EXTRA_WAIT_PHASE_START_ALERT_ON, true); // TODO: fix default value
+
+            // sync preference value
+            //mCallback.getWatchface().setWaitPhaseStartAlertOn(value); // TODO: why does this crash? use service to sync instead??
+            syncBooleanPreference(PATH_WAIT_PHASE_START_ALERT_ON, EXTRA_WAIT_PHASE_START_ALERT_ON, value);
+        }
     }
 
     // ****************************************************************************************** //
@@ -338,7 +350,7 @@ public class SettingsFragment extends PreferenceFragment {
         }
 
         // TODO: properly initialize summary strings
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         updatePreparePhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString(EXTRA_PREPARE_PHASE_LENGTH_MS, "0"))); // TODO: fix default value
         updateLiftPhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString(EXTRA_LIFT_PHASE_LENGTH_MS, "0"))); // TODO: fix default value
         updateWaitPhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString(EXTRA_WAIT_PHASE_LENGTH_MS, "0"))); // TODO: fix default value
