@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class HelpFragment extends Fragment {
+
+    private static final String TAG = "HelpFragment";
 
     private OnFragmentInteractionListener mListener;
 
@@ -39,12 +42,18 @@ public class HelpFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onCreate");
+        //}
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onCreateView");
+        //}
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_help, container, false);
     }
@@ -58,7 +67,11 @@ public class HelpFragment extends Fragment {
 
     @Override
     public void onAttach(Activity activity) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onAttach");
+        //}
         super.onAttach(activity);
+
         try {
             mListener = (OnFragmentInteractionListener) activity;
         } catch (ClassCastException e) {
@@ -69,7 +82,11 @@ public class HelpFragment extends Fragment {
 
     @Override
     public void onDetach() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onDetach");
+        //}
         super.onDetach();
+
         mListener = null;
     }
 

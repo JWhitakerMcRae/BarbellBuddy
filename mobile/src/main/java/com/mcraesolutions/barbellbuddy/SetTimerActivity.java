@@ -13,12 +13,18 @@ import com.google.android.gms.wearable.MessageApi;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
+import com.mcraesolutions.watchfacelibrary.WatchfaceLayout;
 
 
 public class SetTimerActivity extends ActionBarActivity
         implements SetTimerFragment.OnFragmentInteractionListener, SettingsFragment.OnFragmentInteractionListener, SettingsFragment.ActivityCallbackInterface, HelpFragment.OnFragmentInteractionListener {
 
     private static final String TAG = "BarbellBuddy";
+
+    // fragments to control
+    private SetTimerFragment mSetTimerFragment; // initialized by initFragments()
+    private SettingsFragment mSettingsFragment; // initialized by initFragments()
+    private HelpFragment mHelpFragment; // initialized by initFragments()
 
     // Google API client
     GoogleApiClient mGoogleApiClient;
@@ -34,9 +40,13 @@ public class SetTimerActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_set_timer);
+
+        // initialize fragments
+        initFragments();
+
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .add(R.id.container, new SetTimerFragment())
+                    .add(R.id.container, mSetTimerFragment)
                     .commit();
         }
     }
@@ -59,7 +69,7 @@ public class SetTimerActivity extends ActionBarActivity
         //}
         super.onStart();
 
-        // Initialize Google API Client
+        // initialize Google API client
         initGoogleApi();
     }
 
@@ -101,10 +111,16 @@ public class SetTimerActivity extends ActionBarActivity
         this.mGoogleApiClient = mGoogleApiClient;
     }
 
+    public WatchfaceLayout getWatchface() { return mSetTimerFragment.getWatchface(); }
+
     // ****************************************************************************************** //
 
     @Override
     public void onBackPressed() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onBackPressed");
+        //}
+
         if (getFragmentManager().getBackStackEntryCount() != 0) {
             getFragmentManager().popBackStack();
         }
@@ -139,6 +155,16 @@ public class SetTimerActivity extends ActionBarActivity
     }
 
     // ****************************************************************************************** //
+
+    private void initFragments() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "initFragments");
+        //}
+
+        mSetTimerFragment = new SetTimerFragment(); // TODO: have each fragment track its own singleton
+        mSettingsFragment = new SettingsFragment(); // TODO: have each fragment track its own singleton
+        mHelpFragment = new HelpFragment(); // TODO: have each fragment track its own singleton
+    }
 
     private void initGoogleApi() {
         //if (Log.isLoggable(TAG, Log.VERBOSE)) {
@@ -232,7 +258,7 @@ public class SetTimerActivity extends ActionBarActivity
 
         // add on top of SetTimerFragment (rather than replace)
         getFragmentManager().beginTransaction()
-                .replace(R.id.container, new SettingsFragment())
+                .replace(R.id.container, mSettingsFragment)
                 .addToBackStack(null)
                 .commit();
         return true;
@@ -245,7 +271,7 @@ public class SetTimerActivity extends ActionBarActivity
 
         // add on top of SetTimerFragment (rather than replace)
         getFragmentManager().beginTransaction()
-                .replace(R.id.container, new HelpFragment())
+                .replace(R.id.container, mHelpFragment)
                 .addToBackStack(null)
                 .commit();
         return true;

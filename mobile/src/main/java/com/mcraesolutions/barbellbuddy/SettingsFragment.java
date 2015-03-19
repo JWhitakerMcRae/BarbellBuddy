@@ -16,6 +16,7 @@ import com.google.android.gms.wearable.DataApi;
 import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
+import com.mcraesolutions.watchfacelibrary.WatchfaceLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -101,7 +102,11 @@ public class SettingsFragment extends PreferenceFragment {
 
     @Override
     public void onAttach(Activity activity) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onAttach");
+        //}
         super.onAttach(activity);
+
         try {
             mListener = (OnFragmentInteractionListener) activity;
             mCallback = (ActivityCallbackInterface) activity;
@@ -113,6 +118,9 @@ public class SettingsFragment extends PreferenceFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onCreate");
+        //}
         super.onCreate(savedInstanceState);
 
         // load preferences layout from XML
@@ -130,6 +138,7 @@ public class SettingsFragment extends PreferenceFragment {
                     // TODO: fix preferences so this value is stored as an int not a String
 
                     // sync preference value
+                    //mCallback.getWatchface().setPreparePhaseLength_ms(value); // TODO: why does this crash? use service to sync instead??
                     syncIntPreference(PATH_PREPARE_PHASE_LENGTH_MS, EXTRA_PREPARE_PHASE_LENGTH_MS, value);
                 }
                 else if (key.equals(EXTRA_LIFT_PHASE_LENGTH_MS)) {
@@ -138,6 +147,7 @@ public class SettingsFragment extends PreferenceFragment {
                     // TODO: fix preferences so this value is stored as an int not a String
 
                     // sync preference value
+                    //mCallback.getWatchface().setLiftPhaseLength_ms(value); // TODO: why does this crash? use service to sync instead??
                     syncIntPreference(PATH_LIFT_PHASE_LENGTH_MS, EXTRA_LIFT_PHASE_LENGTH_MS, value);
 
                 }
@@ -147,6 +157,7 @@ public class SettingsFragment extends PreferenceFragment {
                     // TODO: fix preferences so this value is stored as an int not a String
 
                     // sync preference value
+                    //mCallback.getWatchface().setWaitPhaseLength_ms(value); // TODO: why does this crash? use service to sync instead??
                     syncIntPreference(PATH_WAIT_PHASE_LENGTH_MS, EXTRA_WAIT_PHASE_LENGTH_MS, value);
 
                 }
@@ -154,36 +165,42 @@ public class SettingsFragment extends PreferenceFragment {
                     int value = sharedPreferences.getInt(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, 0); // TODO: fix default value
 
                     // sync preference value
+                    //mCallback.getWatchface().setPreparePhaseBackgroundColor(value); // TODO: why does this crash? use service to sync instead??
                     syncIntPreference(PATH_PREPARE_PHASE_BACKGROUND_COLOR, EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, value);
                 }
                 else if (key.equals(EXTRA_LIFT_PHASE_BACKGROUND_COLOR)) {
                     int value = sharedPreferences.getInt(EXTRA_LIFT_PHASE_BACKGROUND_COLOR, 0); // TODO: fix default value
 
                     // sync preference value
+                    //mCallback.getWatchface().setLiftPhaseBackgroundColor(value); // TODO: why does this crash? use service to sync instead??
                     syncIntPreference(PATH_LIFT_PHASE_BACKGROUND_COLOR, EXTRA_LIFT_PHASE_BACKGROUND_COLOR, value);
                 }
                 else if (key.equals(EXTRA_WAIT_PHASE_BACKGROUND_COLOR)) {
                     int value = sharedPreferences.getInt(EXTRA_WAIT_PHASE_BACKGROUND_COLOR, 0); // TODO: fix default value
 
                     // sync preference value
+                    //mCallback.getWatchface().setWaitPhaseBackgroundColor(value); // TODO: why does this crash? use service to sync instead??
                     syncIntPreference(PATH_WAIT_PHASE_BACKGROUND_COLOR, EXTRA_WAIT_PHASE_BACKGROUND_COLOR, value);
                 }
                 else if (key.equals(EXTRA_PREPARE_PHASE_START_ALERT_ON)) {
                     boolean value = sharedPreferences.getBoolean(EXTRA_PREPARE_PHASE_START_ALERT_ON, true); // TODO: fix default value
 
                     // sync preference value
+                    //mCallback.getWatchface().setPreparePhaseStartAlertOn(value); // TODO: why does this crash? use service to sync instead??
                     syncBooleanPreference(PATH_PREPARE_PHASE_START_ALERT_ON, EXTRA_PREPARE_PHASE_START_ALERT_ON, value);
                 }
                 else if (key.equals(EXTRA_LIFT_PHASE_START_ALERT_ON)) {
                     boolean value = sharedPreferences.getBoolean(EXTRA_LIFT_PHASE_START_ALERT_ON, true); // TODO: fix default value
 
                     // sync preference value
+                    //mCallback.getWatchface().setLiftPhaseStartAlertOn(value); // TODO: why does this crash? use service to sync instead??
                     syncBooleanPreference(PATH_LIFT_PHASE_START_ALERT_ON, EXTRA_LIFT_PHASE_START_ALERT_ON, value);
                 }
                 else if (key.equals(EXTRA_WAIT_PHASE_START_ALERT_ON)) {
                     boolean value = sharedPreferences.getBoolean(EXTRA_WAIT_PHASE_START_ALERT_ON, true); // TODO: fix default value
 
                     // sync preference value
+                    //mCallback.getWatchface().setWaitPhaseStartAlertOn(value); // TODO: why does this crash? use service to sync instead??
                     syncBooleanPreference(PATH_WAIT_PHASE_START_ALERT_ON, EXTRA_WAIT_PHASE_START_ALERT_ON, value);
                 }
             }
@@ -206,6 +223,9 @@ public class SettingsFragment extends PreferenceFragment {
 
     @Override
     public void onResume() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onResume");
+        //}
         super.onResume();
 
         // initialize settings values from resource file
@@ -222,7 +242,11 @@ public class SettingsFragment extends PreferenceFragment {
 
     @Override
     public void onDetach() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onDetach");
+        //}
         super.onDetach();
+
         mListener = null;
     }
 
@@ -255,6 +279,9 @@ public class SettingsFragment extends PreferenceFragment {
     // ****************************************************************************************** //
 
     private void initSettingsValues() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "initSettingsValues");
+        //}
 
         try {
             /*
@@ -297,6 +324,11 @@ public class SettingsFragment extends PreferenceFragment {
             PATH_PREPARE_PHASE_BACKGROUND_COLOR = getResources().getString(R.string.path_prepare_phase_background_color);
             PATH_LIFT_PHASE_BACKGROUND_COLOR = getResources().getString(R.string.path_lift_phase_background_color);
             PATH_WAIT_PHASE_BACKGROUND_COLOR = getResources().getString(R.string.path_wait_phase_background_color);
+
+            // settings data - set phase alert on/off status (value should be boolean, true = on, false = off)
+            PATH_PREPARE_PHASE_START_ALERT_ON = getResources().getString(R.string.path_prepare_phase_start_alert_on);
+            PATH_LIFT_PHASE_START_ALERT_ON = getResources().getString(R.string.path_lift_phase_start_alert_on);
+            PATH_WAIT_PHASE_START_ALERT_ON = getResources().getString(R.string.path_wait_phase_start_alert_on);
         }
         catch (NullPointerException e) {
             e.printStackTrace(); // most likely getting called too soon, before Resources object is created
@@ -310,11 +342,13 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     private void updatePreparePhaseLengthPreferenceSummary(int value) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
         Log.v(TAG, "updatePreparePhaseLengthPreferenceSummary");
+        //}
 
         ListPreference preparePhaseLengthPreference = (ListPreference) findPreference(EXTRA_PREPARE_PHASE_LENGTH_MS);
         try {
-            preparePhaseLengthPreference.setSummary(value + " seconds"); // TODO: read unit string from strings.xml
+            preparePhaseLengthPreference.setSummary(value/1000 + " seconds"); // TODO: read unit string from strings.xml
         }
         catch (NullPointerException e) {
             e.printStackTrace();
@@ -322,11 +356,13 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     private void updateLiftPhaseLengthPreferenceSummary(int value) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
         Log.v(TAG, "updateLiftPhaseLengthPreferenceSummary");
+        //}
 
         ListPreference liftPhaseLengthPreference = (ListPreference) findPreference(EXTRA_LIFT_PHASE_LENGTH_MS);
         try {
-            liftPhaseLengthPreference.setSummary(value + " seconds"); // TODO: read unit string from strings.xml
+            liftPhaseLengthPreference.setSummary(value/1000 + " seconds"); // TODO: read unit string from strings.xml
         }
         catch (NullPointerException e) {
             e.printStackTrace();
@@ -334,11 +370,13 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     private void updateWaitPhaseLengthPreferenceSummary(int value) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
         Log.v(TAG, "updateWaitPhaseLengthPreferenceSummary");
+        //}
 
         ListPreference waitPhaseLengthPreference = (ListPreference) findPreference(EXTRA_WAIT_PHASE_LENGTH_MS);
         try {
-            waitPhaseLengthPreference.setSummary(value + " seconds"); // TODO: read unit string from strings.xml
+            waitPhaseLengthPreference.setSummary(value/1000 + " seconds"); // TODO: read unit string from strings.xml
         }
         catch (NullPointerException e) {
             e.printStackTrace();
@@ -348,6 +386,10 @@ public class SettingsFragment extends PreferenceFragment {
     // *** start sync preference data ***
 
     private PendingResult<DataApi.DataItemResult> syncIntPreference(String path, String key, int value) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "syncIntPreference: " + path + ", " + key + ", 0x" + Integer.toHexString(value));
+        //}
+
 
         PutDataMapRequest putDataMapReq = PutDataMapRequest.create(path);
         putDataMapReq.getDataMap().putInt(key, value);
@@ -358,6 +400,9 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     private PendingResult<DataApi.DataItemResult> syncBooleanPreference(String path, String key, boolean value) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "syncBooleanPreference: " + path + ", " + key + ", " + value);
+        //}
 
         PutDataMapRequest putDataMapReq = PutDataMapRequest.create(path);
         putDataMapReq.getDataMap().putBoolean(key, value);
@@ -368,6 +413,9 @@ public class SettingsFragment extends PreferenceFragment {
     }
 
     private PendingResult<DataApi.DataItemResult> syncStringPreference(String path, String key, String value) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "syncStringPreference: " + path + ", " + key + ", " + value);
+        //}
 
         PutDataMapRequest putDataMapReq = PutDataMapRequest.create(path);
         putDataMapReq.getDataMap().putString(key, value);
@@ -381,5 +429,7 @@ public class SettingsFragment extends PreferenceFragment {
 
     public interface ActivityCallbackInterface {
         public GoogleApiClient getGoogleApiClient();
+
+        public WatchfaceLayout getWatchface();
     }
 }

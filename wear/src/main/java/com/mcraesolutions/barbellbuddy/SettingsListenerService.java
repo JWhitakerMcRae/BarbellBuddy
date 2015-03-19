@@ -83,6 +83,9 @@ public class SettingsListenerService extends WearableListenerService {
 
     @Override
     public void onCreate() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onCreate");
+        //}
         super.onCreate();
 
         // initialize settings values from resource file
@@ -91,7 +94,10 @@ public class SettingsListenerService extends WearableListenerService {
 
     @Override
     public void onDataChanged(DataEventBuffer dataEvents) {
-        super.onDataChanged(dataEvents); // TODO: why wasn't this in Google tutorial?
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onDataChanged");
+        //}
+        //super.onDataChanged(dataEvents); // TODO: why wasn't this in Google tutorial?
 
         if (Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, "onDataChanged: " + dataEvents);
@@ -124,6 +130,9 @@ public class SettingsListenerService extends WearableListenerService {
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onMessageReceived");
+        //}
 
         boolean processed = processMessage(messageEvent);
         if (!processed) {
@@ -134,7 +143,12 @@ public class SettingsListenerService extends WearableListenerService {
         }
     }
 
+    // ****************************************************************************************** //
+
     private void initSettingsValues() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "initSettingsValues");
+        //}
 
         try {
             /*
@@ -184,6 +198,11 @@ public class SettingsListenerService extends WearableListenerService {
             PATH_PREPARE_PHASE_BACKGROUND_COLOR = getResources().getString(R.string.path_prepare_phase_background_color);
             PATH_LIFT_PHASE_BACKGROUND_COLOR = getResources().getString(R.string.path_lift_phase_background_color);
             PATH_WAIT_PHASE_BACKGROUND_COLOR = getResources().getString(R.string.path_wait_phase_background_color);
+
+            // settings data - set phase alert on/off status (value should be boolean, true = on, false = off)
+            PATH_PREPARE_PHASE_START_ALERT_ON = getResources().getString(R.string.path_prepare_phase_start_alert_on);
+            PATH_LIFT_PHASE_START_ALERT_ON = getResources().getString(R.string.path_lift_phase_start_alert_on);
+            PATH_WAIT_PHASE_START_ALERT_ON = getResources().getString(R.string.path_wait_phase_start_alert_on);
         }
         catch (NullPointerException e) {
             e.printStackTrace(); // most likely getting called too soon, before Resources object is created
@@ -196,6 +215,9 @@ public class SettingsListenerService extends WearableListenerService {
      * @return true if processed successfully
      */
     private boolean processDataEvent(DataEvent event) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "processDataEvent");
+        //}
 
         Uri uri = event.getDataItem().getUri();
         final String path = uri != null ? uri.getPath() : null;
@@ -204,10 +226,7 @@ public class SettingsListenerService extends WearableListenerService {
         }
 
         // pass data event and path to root level parsers, return true if any are successful
-        if (processStartWearActivity(event, path)) {
-            return true;
-        }
-        else if (processSetPreparePhaseData(event, path)) {
+        if (processSetPreparePhaseData(event, path)) {
             return true;
         }
         else if (processSetLiftPhaseData(event, path)) {
@@ -220,6 +239,9 @@ public class SettingsListenerService extends WearableListenerService {
     }
 
     private boolean processMessage(MessageEvent messageEvent) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "processMessage");
+        //}
 
         if (messageEvent.getPath().equals(PATH_START_WEAR_ACTIVITY)) {
             startWearActivity();
@@ -232,14 +254,10 @@ public class SettingsListenerService extends WearableListenerService {
      * DataEvent root level path parsers
      */
 
-    private boolean processStartWearActivity(DataEvent event, String path) {
-        if (path.equals(PATH_START_WEAR_ACTIVITY)) {
-            return startWearActivity();
-        }
-        return false;
-    }
-
     private boolean processSetPreparePhaseData(DataEvent event, String path) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "processSetPreparePhaseData");
+        //}
 
         if (path.startsWith(PATH_PREPARE_ROOT)) {
 
@@ -257,6 +275,9 @@ public class SettingsListenerService extends WearableListenerService {
     }
 
     private boolean processSetLiftPhaseData(DataEvent event, String path) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "processSetLiftPhaseData");
+        //}
 
         if (path.startsWith(PATH_LIFT_ROOT)) {
 
@@ -274,6 +295,9 @@ public class SettingsListenerService extends WearableListenerService {
     }
 
     private boolean processSetWaitPhaseData(DataEvent event, String path) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "processSetWaitPhaseData");
+        //}
 
         if (path.startsWith(PATH_WAIT_ROOT)) {
 
@@ -295,6 +319,9 @@ public class SettingsListenerService extends WearableListenerService {
      */
 
     private boolean startWearActivity() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "startWearActivity()");
+        //}
 
         try {
             Intent wearActivityIntent = new Intent(this, SetTimerWearActivity.class);
@@ -309,6 +336,9 @@ public class SettingsListenerService extends WearableListenerService {
     }
 
     private boolean setPreparePhaseLength_ms(DataEvent event) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "setPreparePhaseLength_ms");
+        //}
 
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_PREPARE_PHASE_LENGTH_MS)) {
@@ -336,6 +366,9 @@ public class SettingsListenerService extends WearableListenerService {
     }
 
     private boolean setPreparePhaseBackgroundColor(DataEvent event) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "setPreparePhaseBackgroundColor");
+        //}
 
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR)) {
@@ -363,6 +396,9 @@ public class SettingsListenerService extends WearableListenerService {
     }
 
     private boolean setPreparePhaseStartAlertOn(DataEvent event) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "setPreparePhaseStartAlertOn");
+        //}
 
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_LIFT_PHASE_START_ALERT_ON)) {
@@ -390,6 +426,9 @@ public class SettingsListenerService extends WearableListenerService {
     }
 
     private boolean setLiftPhaseLength_ms(DataEvent event) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "setLiftPhaseLength_ms");
+        //}
 
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_LIFT_PHASE_LENGTH_MS)) {
@@ -417,6 +456,9 @@ public class SettingsListenerService extends WearableListenerService {
     }
 
     private boolean setLiftPhaseBackgroundColor(DataEvent event) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "setLiftPhaseBackgroundColor");
+        //}
 
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_LIFT_PHASE_BACKGROUND_COLOR)) {
@@ -444,6 +486,9 @@ public class SettingsListenerService extends WearableListenerService {
     }
 
     private boolean setLiftPhaseStartAlertOn(DataEvent event) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "setLiftPhaseStartAlertOn");
+        //}
 
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_LIFT_PHASE_START_ALERT_ON)) {
@@ -471,6 +516,9 @@ public class SettingsListenerService extends WearableListenerService {
     }
 
     private boolean setWaitPhaseLength_ms(DataEvent event) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "setWaitPhaseLength_ms");
+        //}
 
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_WAIT_PHASE_LENGTH_MS)) {
@@ -498,6 +546,9 @@ public class SettingsListenerService extends WearableListenerService {
     }
 
     private boolean setWaitPhaseBackgroundColor(DataEvent event) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "setWaitPhaseBackgroundColor");
+        //}
 
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_WAIT_PHASE_BACKGROUND_COLOR)) {
@@ -525,6 +576,9 @@ public class SettingsListenerService extends WearableListenerService {
     }
 
     private boolean setWaitPhaseStartAlertOn(DataEvent event) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "setWaitPhaseStartAlertOn");
+        //}
 
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_WAIT_PHASE_BACKGROUND_COLOR)) {

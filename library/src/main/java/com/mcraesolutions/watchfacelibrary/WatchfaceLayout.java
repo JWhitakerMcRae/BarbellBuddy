@@ -492,6 +492,9 @@ public class WatchfaceLayout extends FrameLayout {
 
     public void setPreparePhaseLength_ms(int preparePhaseLength_ms) {
         mPreparePhaseLength_ms = preparePhaseLength_ms;
+        if (mCurrentSetPhase == SetPhaseEnum.PREPARE) { // update current display
+            updateCurrentSetPhaseUi();
+        }
     }
 
     public int getLiftPhaseLength_ms() {
@@ -500,6 +503,9 @@ public class WatchfaceLayout extends FrameLayout {
 
     public void setLiftPhaseLength_ms(int liftPhaseLength_ms) {
         mLiftPhaseLength_ms = liftPhaseLength_ms;
+        if (mCurrentSetPhase == SetPhaseEnum.LIFT) { // update current display
+            updateCurrentSetPhaseUi();
+        }
     }
 
     public int getWaitPhaseLength_ms() {
@@ -508,6 +514,9 @@ public class WatchfaceLayout extends FrameLayout {
 
     public void setWaitPhaseLength_ms(int waitPhaseLength_ms) {
         mWaitPhaseLength_ms = waitPhaseLength_ms;
+        if (mCurrentSetPhase == SetPhaseEnum.WAIT) { // update current display
+            updateCurrentSetPhaseUi();
+        }
     }
 
     public int getPreparePhaseBackgroundColor() {
@@ -516,6 +525,9 @@ public class WatchfaceLayout extends FrameLayout {
 
     public void setPreparePhaseBackgroundColor(int preparePhaseBackgroundColor) {
         mPreparePhaseBackgroundColor = preparePhaseBackgroundColor;
+        if (mCurrentSetPhase == SetPhaseEnum.PREPARE) { // update current display
+            mSetTimerBackground.setImageBitmap(createBackground());
+        }
     }
 
     public int getLiftPhaseBackgroundColor() {
@@ -524,6 +536,9 @@ public class WatchfaceLayout extends FrameLayout {
 
     public void setLiftPhaseBackgroundColor(int liftPhaseBackgroundColor) {
         mLiftPhaseBackgroundColor = liftPhaseBackgroundColor;
+        if (mCurrentSetPhase == SetPhaseEnum.LIFT) { // update current display
+            mSetTimerBackground.setImageBitmap(createBackground());
+        }
     }
 
     public int getWaitPhaseBackgroundColor() {
@@ -532,6 +547,9 @@ public class WatchfaceLayout extends FrameLayout {
 
     public void setWaitPhaseBackgroundColor(int waitPhaseBackgroundColor) {
         mWaitPhaseBackgroundColor = waitPhaseBackgroundColor;
+        if (mCurrentSetPhase == SetPhaseEnum.WAIT) { // update current display
+            mSetTimerBackground.setImageBitmap(createBackground());
+        }
     }
 
     public boolean isPreparePhaseStartAlertOn() {

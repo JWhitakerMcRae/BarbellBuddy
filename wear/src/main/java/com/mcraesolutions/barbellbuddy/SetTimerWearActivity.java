@@ -80,13 +80,22 @@ public class SetTimerWearActivity extends Activity {
 
                 // auto-start watchface chronometer
                 mWatchface.startChronometer();
+
+                // read settings values
+                readSettingsValues();
             }
         });
     }
 
     @Override
     protected void onStart() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onStart");
+        //}
         super.onStart();
+
+        // initialize settings values from resource file
+        initSettingsValues();
 
         // start listener service
         startService(new Intent(this, SettingsListenerService.class));
@@ -99,10 +108,7 @@ public class SetTimerWearActivity extends Activity {
         //}
         super.onResume();
 
-        // initialize settings values from resource file
-        initSettingsValues();
-
-        // read/default settings values
+        // read settings values
         readSettingsValues();
 
         try {
@@ -135,6 +141,9 @@ public class SetTimerWearActivity extends Activity {
     // ****************************************************************************************** //
 
     private void initSettingsValues() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "initSettingsValues");
+        //}
 
         try {
             /*
@@ -173,6 +182,12 @@ public class SetTimerWearActivity extends Activity {
         Log.v(TAG, "readSettingsValues");
         //}
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        // make sure watchface has been inflated
+        if (mWatchface == null) {
+            Log.w(TAG, "Unable to read settings values, watchface object is still null!");
+            return;
+        }
 
         try {
             // set phase lengths (ms) -- set from settings (phone)

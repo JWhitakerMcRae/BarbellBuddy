@@ -28,7 +28,7 @@ import com.mcraesolutions.watchfacelibrary.WatchfaceLayout;
  */
 public class SetTimerFragment extends Fragment {
 
-    private static final String TAG = "BarbellBuddy";
+    private static final String TAG = "SetTimerFragment";
 
     private OnFragmentInteractionListener mListener;
 
@@ -133,7 +133,11 @@ public class SetTimerFragment extends Fragment {
 
     @Override
     public void onAttach(Activity activity) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onAttach");
+        //}
         super.onAttach(activity);
+
         try {
             mListener = (OnFragmentInteractionListener) activity;
         } catch (ClassCastException e) {
@@ -144,12 +148,18 @@ public class SetTimerFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onCreate");
+        //}
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onCreateView");
+        //}
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_set_timer, container, false);
     }
@@ -179,6 +189,9 @@ public class SetTimerFragment extends Fragment {
 
     @Override
     public void onResume() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onResume");
+        //}
         super.onResume();
 
         // initialize settings values from resource file
@@ -199,7 +212,11 @@ public class SetTimerFragment extends Fragment {
 
     @Override
     public void onDetach() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onDetach");
+        //}
         super.onDetach();
+
         mListener = null;
     }
 
@@ -229,7 +246,16 @@ public class SetTimerFragment extends Fragment {
 
     // ****************************************************************************************** //
 
+    public WatchfaceLayout getWatchface() {
+        return mWatchface;
+    }
+
+    // ****************************************************************************************** //
+
     private void initSettingsValues() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "initSettingsValues");
+        //}
 
         try {
                 /*
