@@ -88,4 +88,15 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:title="@string/action_reset">
+
+        <com.mcraesolutions.utils.YesNoPreference
+            android:key="@string/key_reset_default_values"
+            android:title="@string/reset_default_values_title"
+            android:dialogMessage="@string/reset_default_values_dialog_message"
+            android:summary="@string/reset_default_values_summary" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>

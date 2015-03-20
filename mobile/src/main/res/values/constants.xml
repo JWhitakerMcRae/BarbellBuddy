@@ -35,6 +35,13 @@
     <string name="extra_wait_phase_start_alert_on">com.mcraesolutions.barbellbuddy.WAIT_PHASE_START_ALERT_ON</string>
 
     <!--
+    Keys Without Intents
+    -->
+
+    <!-- settings value - reset default values keypress -->
+    <string name="key_reset_default_values">key_reset_default_values</string>
+
+    <!--
     PutDataMapRequest Paths (used to read DataEvent objects from phone)
     -->
 
