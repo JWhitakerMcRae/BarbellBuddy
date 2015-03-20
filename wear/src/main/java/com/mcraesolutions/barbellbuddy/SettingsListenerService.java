@@ -221,9 +221,9 @@ public class SettingsListenerService extends WearableListenerService {
 
         Uri uri = event.getDataItem().getUri();
         final String path = uri != null ? uri.getPath() : null;
-        if (Log.isLoggable(TAG, Log.DEBUG)) {
+        //if (Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, "DataEvent path: " + path);
-        }
+        //}
 
         // pass data event and path to root level parsers, return true if any are successful
         if (processSetPreparePhaseData(event, path)) {
@@ -244,6 +244,9 @@ public class SettingsListenerService extends WearableListenerService {
         //}
 
         if (messageEvent.getPath().equals(PATH_START_WEAR_ACTIVITY)) {
+            //if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Starting wear activity...");
+            //}
             startWearActivity();
             return true;
         }
@@ -262,12 +265,21 @@ public class SettingsListenerService extends WearableListenerService {
         if (path.startsWith(PATH_PREPARE_ROOT)) {
 
             if (path.equals(PATH_PREPARE_PHASE_LENGTH_MS)) {
+                //if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Setting prepare phase length...");
+                //}
                 return setPreparePhaseLength_ms(event);
             }
             else if (path.equals(PATH_PREPARE_PHASE_BACKGROUND_COLOR)) {
+                //if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Setting prepare phase background color...");
+                //}
                 return setPreparePhaseBackgroundColor(event);
             }
             else if (path.equals(PATH_PREPARE_PHASE_START_ALERT_ON)) {
+                //if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Setting prepare phase start alert on...");
+                //}
                 return setPreparePhaseStartAlertOn(event);
             }
         }
@@ -282,12 +294,21 @@ public class SettingsListenerService extends WearableListenerService {
         if (path.startsWith(PATH_LIFT_ROOT)) {
 
             if (path.equals(PATH_LIFT_PHASE_LENGTH_MS)) {
+                //if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Setting lift phase length...");
+                //}
                 return setLiftPhaseLength_ms(event);
             }
             else if (path.equals(PATH_LIFT_PHASE_BACKGROUND_COLOR)) {
+                //if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Setting lift phase background color...");
+                //}
                 return setLiftPhaseBackgroundColor(event);
             }
             else if (path.equals(PATH_LIFT_PHASE_START_ALERT_ON)) {
+                //if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Setting lift phase start alert on...");
+                //}
                 return setLiftPhaseStartAlertOn(event);
             }
         }
@@ -302,12 +323,21 @@ public class SettingsListenerService extends WearableListenerService {
         if (path.startsWith(PATH_WAIT_ROOT)) {
 
             if (path.equals(PATH_WAIT_PHASE_LENGTH_MS)) {
+                //if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Setting wait phase length...");
+                //}
                 return setWaitPhaseLength_ms(event);
             }
             else if (path.equals(PATH_WAIT_PHASE_BACKGROUND_COLOR)) {
+                //if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Setting wait phase background color...");
+                //}
                 return setWaitPhaseBackgroundColor(event);
             }
             else if (path.equals(PATH_WAIT_PHASE_START_ALERT_ON)) {
+                //if (Log.isLoggable(TAG, Log.DEBUG)) {
+                Log.d(TAG, "Setting wait phase start alert on...");
+                //}
                 return setWaitPhaseStartAlertOn(event);
             }
         }
@@ -343,9 +373,9 @@ public class SettingsListenerService extends WearableListenerService {
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_PREPARE_PHASE_LENGTH_MS)) {
             int value = map.getInt(EXTRA_PREPARE_PHASE_LENGTH_MS, -1); // default to invalid value
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
+            //if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "Received new prepare phase length: " + value + " ms");
-            }
+            //}
 
             // save shared preference (read by activity on start)
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -373,9 +403,9 @@ public class SettingsListenerService extends WearableListenerService {
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR)) {
             int value = map.getInt(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR);
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
+            //if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "Received new prepare phase background color: " + Integer.toHexString(value));
-            }
+            //}
 
             // save shared preference (read by activity on start)
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -403,9 +433,9 @@ public class SettingsListenerService extends WearableListenerService {
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_PREPARE_PHASE_START_ALERT_ON)) {
             boolean value = map.getBoolean(EXTRA_PREPARE_PHASE_START_ALERT_ON);
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
+            //if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "Received new prepare phase start alert on: " + value);
-            }
+            //}
 
             // save shared preference (read by activity on start)
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -433,9 +463,9 @@ public class SettingsListenerService extends WearableListenerService {
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_LIFT_PHASE_LENGTH_MS)) {
             int value = map.getInt(EXTRA_LIFT_PHASE_LENGTH_MS);
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
+            //if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "Received new lift phase length: " + value + " ms");
-            }
+            //}
 
             // save shared preference (read by activity on start)
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -463,9 +493,9 @@ public class SettingsListenerService extends WearableListenerService {
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_LIFT_PHASE_BACKGROUND_COLOR)) {
             int value = map.getInt(EXTRA_LIFT_PHASE_BACKGROUND_COLOR);
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
+            //if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "Received new lift phase background color: " + Integer.toHexString(value));
-            }
+            //}
 
             // save shared preference (read by activity on start)
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -493,9 +523,9 @@ public class SettingsListenerService extends WearableListenerService {
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_LIFT_PHASE_START_ALERT_ON)) {
             boolean value = map.getBoolean(EXTRA_LIFT_PHASE_START_ALERT_ON);
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
+            //if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "Received new lift phase start alert on: " + value);
-            }
+            //}
 
             // save shared preference (read by activity on start)
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -523,9 +553,9 @@ public class SettingsListenerService extends WearableListenerService {
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_WAIT_PHASE_LENGTH_MS)) {
             int value = map.getInt(EXTRA_WAIT_PHASE_LENGTH_MS);
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
+            //if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "Received new wait phase length: " + value + " ms");
-            }
+            //}
 
             // save shared preference (read by activity on start)
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -553,9 +583,9 @@ public class SettingsListenerService extends WearableListenerService {
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_WAIT_PHASE_BACKGROUND_COLOR)) {
             int value = map.getInt(EXTRA_WAIT_PHASE_BACKGROUND_COLOR);
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
+            //if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "Received new wait phase background color: " + Integer.toHexString(value));
-            }
+            //}
 
             // save shared preference (read by activity on start)
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -583,9 +613,9 @@ public class SettingsListenerService extends WearableListenerService {
         final DataMap map = DataMapItem.fromDataItem(event.getDataItem()).getDataMap();
         if (map.keySet().contains(EXTRA_WAIT_PHASE_START_ALERT_ON)) {
             boolean value = map.getBoolean(EXTRA_WAIT_PHASE_START_ALERT_ON);
-            if (Log.isLoggable(TAG, Log.DEBUG)) {
+            //if (Log.isLoggable(TAG, Log.DEBUG)) {
                 Log.d(TAG, "Received new wait phase start alert on/off: " + value);
-            }
+            //}
 
             // save shared preference (read by activity on start)
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

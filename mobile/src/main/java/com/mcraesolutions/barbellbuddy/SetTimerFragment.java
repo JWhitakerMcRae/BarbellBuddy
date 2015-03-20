@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -199,10 +200,29 @@ public class SetTimerFragment extends Fragment {
 
         // read/default settings values
         //readSettingsValues(); // TODO: fix this so it doesn't crash and can be called
+
+        try {
+            // register update settings receiver
+            IntentFilter intentFilter = new IntentFilter(BROADCAST_UPDATE_SETTINGS_VALUES);
+            getActivity().registerReceiver(mUpdateSettingsReceiver, intentFilter);
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace(); // most likely initSettingsValues didn't complete successfully
+        }
     }
 
+    @Override
+    public void onPause() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "onPause");
+        //}
+        super.onPause();
 
-    // onPause
+        // deregister update settings receiver
+        if (mUpdateSettingsReceiver != null) {
+            getActivity().unregisterReceiver(mUpdateSettingsReceiver);
+        }
+    }
 
     // onStop
 
@@ -242,12 +262,6 @@ public class SetTimerFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
-    }
-
-    // ****************************************************************************************** //
-
-    public WatchfaceLayout getWatchface() {
-        return mWatchface;
     }
 
     // ****************************************************************************************** //

@@ -2,6 +2,7 @@ package com.mcraesolutions.barbellbuddy;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,7 +17,6 @@ import com.google.android.gms.wearable.DataApi;
 import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
-import com.mcraesolutions.watchfacelibrary.WatchfaceLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +33,12 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     private OnFragmentInteractionListener mListener;
 
     private ActivityCallbackInterface mCallback;
+
+    /*
+     * Broadcast Actions
+     */
+
+    public String BROADCAST_UPDATE_SETTINGS_VALUES; // initialize by initSettingsValues()
 
     /*
      * Intent Extra Keys
@@ -171,7 +177,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         //}
         super.onPause();
 
-        // register preferences onChange listeners
+        // unregister preferences onChange listeners
         PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).unregisterOnSharedPreferenceChangeListener(this);
     }
 
@@ -202,74 +208,65 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         //}
 
         if (key.equals(EXTRA_PREPARE_PHASE_LENGTH_MS)) {
-            int value = Integer.parseInt(sharedPreferences.getString(EXTRA_PREPARE_PHASE_LENGTH_MS, "0")); // TODO: fix default value
+            int value = Integer.parseInt(sharedPreferences.getString(EXTRA_PREPARE_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.prepare_phase_length_ms))));
             updatePreparePhaseLengthPreferenceSummary(value);
             // TODO: fix preferences so this value is stored as an int not a String
 
             // sync preference value
-            //mCallback.getWatchface().setPreparePhaseLength_ms(value); // TODO: why does this crash? use service to sync instead??
             syncIntPreference(PATH_PREPARE_PHASE_LENGTH_MS, EXTRA_PREPARE_PHASE_LENGTH_MS, value);
         }
         else if (key.equals(EXTRA_LIFT_PHASE_LENGTH_MS)) {
-            int value = Integer.parseInt(sharedPreferences.getString(EXTRA_LIFT_PHASE_LENGTH_MS, "0")); // TODO: fix default value
+            int value = Integer.parseInt(sharedPreferences.getString(EXTRA_LIFT_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.lift_phase_length_ms))));
             updateLiftPhaseLengthPreferenceSummary(value);
             // TODO: fix preferences so this value is stored as an int not a String
 
             // sync preference value
-            //mCallback.getWatchface().setLiftPhaseLength_ms(value); // TODO: why does this crash? use service to sync instead??
             syncIntPreference(PATH_LIFT_PHASE_LENGTH_MS, EXTRA_LIFT_PHASE_LENGTH_MS, value);
 
         }
         else if (key.equals(EXTRA_WAIT_PHASE_LENGTH_MS)) {
-            int value = Integer.parseInt(sharedPreferences.getString(EXTRA_WAIT_PHASE_LENGTH_MS, "0")); // TODO: fix default value
+            int value = Integer.parseInt(sharedPreferences.getString(EXTRA_WAIT_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.wait_phase_length_ms))));
             updateWaitPhaseLengthPreferenceSummary(value);
             // TODO: fix preferences so this value is stored as an int not a String
 
             // sync preference value
-            //mCallback.getWatchface().setWaitPhaseLength_ms(value); // TODO: why does this crash? use service to sync instead??
             syncIntPreference(PATH_WAIT_PHASE_LENGTH_MS, EXTRA_WAIT_PHASE_LENGTH_MS, value);
 
         }
         else if (key.equals(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR)) {
-            int value = sharedPreferences.getInt(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, 0); // TODO: fix default value
+            int value = sharedPreferences.getInt(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, getResources().getColor(com.mcraesolutions.watchfacelibrary.R.color.prepare_background_color));
 
             // sync preference value
-            //mCallback.getWatchface().setPreparePhaseBackgroundColor(value); // TODO: why does this crash? use service to sync instead??
             syncIntPreference(PATH_PREPARE_PHASE_BACKGROUND_COLOR, EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, value);
         }
         else if (key.equals(EXTRA_LIFT_PHASE_BACKGROUND_COLOR)) {
-            int value = sharedPreferences.getInt(EXTRA_LIFT_PHASE_BACKGROUND_COLOR, 0); // TODO: fix default value
+            int value = sharedPreferences.getInt(EXTRA_LIFT_PHASE_BACKGROUND_COLOR, getResources().getColor(com.mcraesolutions.watchfacelibrary.R.color.lift_background_color));
 
             // sync preference value
-            //mCallback.getWatchface().setLiftPhaseBackgroundColor(value); // TODO: why does this crash? use service to sync instead??
             syncIntPreference(PATH_LIFT_PHASE_BACKGROUND_COLOR, EXTRA_LIFT_PHASE_BACKGROUND_COLOR, value);
         }
         else if (key.equals(EXTRA_WAIT_PHASE_BACKGROUND_COLOR)) {
-            int value = sharedPreferences.getInt(EXTRA_WAIT_PHASE_BACKGROUND_COLOR, 0); // TODO: fix default value
+            int value = sharedPreferences.getInt(EXTRA_WAIT_PHASE_BACKGROUND_COLOR, getResources().getColor(com.mcraesolutions.watchfacelibrary.R.color.wait_background_color));
 
             // sync preference value
-            //mCallback.getWatchface().setWaitPhaseBackgroundColor(value); // TODO: why does this crash? use service to sync instead??
             syncIntPreference(PATH_WAIT_PHASE_BACKGROUND_COLOR, EXTRA_WAIT_PHASE_BACKGROUND_COLOR, value);
         }
         else if (key.equals(EXTRA_PREPARE_PHASE_START_ALERT_ON)) {
-            boolean value = sharedPreferences.getBoolean(EXTRA_PREPARE_PHASE_START_ALERT_ON, true); // TODO: fix default value
+            boolean value = sharedPreferences.getBoolean(EXTRA_PREPARE_PHASE_START_ALERT_ON, getResources().getBoolean(com.mcraesolutions.watchfacelibrary.R.bool.prepare_phase_start_alert_on));
 
             // sync preference value
-            //mCallback.getWatchface().setPreparePhaseStartAlertOn(value); // TODO: why does this crash? use service to sync instead??
             syncBooleanPreference(PATH_PREPARE_PHASE_START_ALERT_ON, EXTRA_PREPARE_PHASE_START_ALERT_ON, value);
         }
         else if (key.equals(EXTRA_LIFT_PHASE_START_ALERT_ON)) {
-            boolean value = sharedPreferences.getBoolean(EXTRA_LIFT_PHASE_START_ALERT_ON, false); // TODO: fix default value
+            boolean value = sharedPreferences.getBoolean(EXTRA_LIFT_PHASE_START_ALERT_ON, getResources().getBoolean(com.mcraesolutions.watchfacelibrary.R.bool.lift_phase_start_alert_on));
 
             // sync preference value
-            //mCallback.getWatchface().setLiftPhaseStartAlertOn(value); // TODO: why does this crash? use service to sync instead??
             syncBooleanPreference(PATH_LIFT_PHASE_START_ALERT_ON, EXTRA_LIFT_PHASE_START_ALERT_ON, value);
         }
         else if (key.equals(EXTRA_WAIT_PHASE_START_ALERT_ON)) {
-            boolean value = sharedPreferences.getBoolean(EXTRA_WAIT_PHASE_START_ALERT_ON, false); // TODO: fix default value
+            boolean value = sharedPreferences.getBoolean(EXTRA_WAIT_PHASE_START_ALERT_ON, getResources().getBoolean(com.mcraesolutions.watchfacelibrary.R.bool.wait_phase_start_alert_on));
 
             // sync preference value
-            //mCallback.getWatchface().setWaitPhaseStartAlertOn(value); // TODO: why does this crash? use service to sync instead??
             syncBooleanPreference(PATH_WAIT_PHASE_START_ALERT_ON, EXTRA_WAIT_PHASE_START_ALERT_ON, value);
         }
         else if (key.equals(KEY_RESET_DEFAULT_VALUES)) {
@@ -277,6 +274,10 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
             if (value) {
                 resetDefaultValues();
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(KEY_RESET_DEFAULT_VALUES, false);
+                editor.apply();
             }
 
         }
@@ -316,6 +317,12 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         //}
 
         try {
+            /*
+             * Broadcast Actions
+             */
+
+            BROADCAST_UPDATE_SETTINGS_VALUES = getResources().getString(R.string.broadcast_update_settings_values);
+
             /*
              * Intent Extra Keys
              */
@@ -374,9 +381,9 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
         // TODO: properly initialize summary strings
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        updatePreparePhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString(EXTRA_PREPARE_PHASE_LENGTH_MS, "0"))); // TODO: fix default value
-        updateLiftPhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString(EXTRA_LIFT_PHASE_LENGTH_MS, "0"))); // TODO: fix default value
-        updateWaitPhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString(EXTRA_WAIT_PHASE_LENGTH_MS, "0"))); // TODO: fix default value
+        updatePreparePhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString(EXTRA_PREPARE_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.prepare_phase_length_ms)))));
+        updateLiftPhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString(EXTRA_LIFT_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.lift_phase_length_ms)))));
+        updateWaitPhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString(EXTRA_WAIT_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.wait_phase_length_ms)))));
     }
 
     private void updatePreparePhaseLengthPreferenceSummary(int value) {
@@ -422,89 +429,84 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     }
 
     private void syncPreferences() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "updateWaitPhaseLengthPreferenceSummary");
+        //}
 
-        // TODO: make this work :)
+        syncPreferences(PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()));
+    }
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+    private void syncPreferences(SharedPreferences sharedPreferences) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "updateWaitPhaseLengthPreferenceSummary");
+        //}
 
         /*if (sharedPreferences.contains(EXTRA_PREPARE_PHASE_LENGTH_MS))*/ {
-            int value = Integer.parseInt(sharedPreferences.getString(EXTRA_PREPARE_PHASE_LENGTH_MS, "10000")); // TODO: fix default value
+            int value = Integer.parseInt(sharedPreferences.getString(EXTRA_PREPARE_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.prepare_phase_length_ms))));
             updatePreparePhaseLengthPreferenceSummary(value);
             // TODO: fix preferences so this value is stored as an int not a String
 
             // sync preference value
-            //mCallback.getWatchface().setPreparePhaseLength_ms(value); // TODO: why does this crash? use service to sync instead??
             syncIntPreference(PATH_PREPARE_PHASE_LENGTH_MS, EXTRA_PREPARE_PHASE_LENGTH_MS, value);
         }
         /*else if (key.equals(EXTRA_LIFT_PHASE_LENGTH_MS))*/ {
-            int value = Integer.parseInt(sharedPreferences.getString(EXTRA_LIFT_PHASE_LENGTH_MS, "30000")); // TODO: fix default value
+            int value = Integer.parseInt(sharedPreferences.getString(EXTRA_LIFT_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.lift_phase_length_ms))));
             updateLiftPhaseLengthPreferenceSummary(value);
             // TODO: fix preferences so this value is stored as an int not a String
 
             // sync preference value
-            //mCallback.getWatchface().setLiftPhaseLength_ms(value); // TODO: why does this crash? use service to sync instead??
             syncIntPreference(PATH_LIFT_PHASE_LENGTH_MS, EXTRA_LIFT_PHASE_LENGTH_MS, value);
 
         }
         /*else if (key.equals(EXTRA_WAIT_PHASE_LENGTH_MS))*/ {
-            int value = Integer.parseInt(sharedPreferences.getString(EXTRA_WAIT_PHASE_LENGTH_MS, "80000")); // TODO: fix default value
+            int value = Integer.parseInt(sharedPreferences.getString(EXTRA_WAIT_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.wait_phase_length_ms))));
             updateWaitPhaseLengthPreferenceSummary(value);
             // TODO: fix preferences so this value is stored as an int not a String
 
             // sync preference value
-            //mCallback.getWatchface().setWaitPhaseLength_ms(value); // TODO: why does this crash? use service to sync instead??
             syncIntPreference(PATH_WAIT_PHASE_LENGTH_MS, EXTRA_WAIT_PHASE_LENGTH_MS, value);
 
         }
         /*else if (key.equals(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR))*/ {
-            int value = sharedPreferences.getInt(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, 0x00F5A9A9); // TODO: fix default value
+            int value = sharedPreferences.getInt(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, getResources().getColor(com.mcraesolutions.watchfacelibrary.R.color.prepare_background_color));
 
             // sync preference value
-            //mCallback.getWatchface().setPreparePhaseBackgroundColor(value); // TODO: why does this crash? use service to sync instead??
             syncIntPreference(PATH_PREPARE_PHASE_BACKGROUND_COLOR, EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, value);
         }
         /*else if (key.equals(EXTRA_LIFT_PHASE_BACKGROUND_COLOR))*/ {
-            int value = sharedPreferences.getInt(EXTRA_LIFT_PHASE_BACKGROUND_COLOR, 0x0081F79F); // TODO: fix default value
+            int value = sharedPreferences.getInt(EXTRA_LIFT_PHASE_BACKGROUND_COLOR, getResources().getColor(com.mcraesolutions.watchfacelibrary.R.color.lift_background_color));
 
             // sync preference value
-            //mCallback.getWatchface().setLiftPhaseBackgroundColor(value); // TODO: why does this crash? use service to sync instead??
             syncIntPreference(PATH_LIFT_PHASE_BACKGROUND_COLOR, EXTRA_LIFT_PHASE_BACKGROUND_COLOR, value);
         }
         /*else if (key.equals(EXTRA_WAIT_PHASE_BACKGROUND_COLOR))*/ {
-            int value = sharedPreferences.getInt(EXTRA_WAIT_PHASE_BACKGROUND_COLOR, 0x0073B8E6); // TODO: fix default value
+            int value = sharedPreferences.getInt(EXTRA_WAIT_PHASE_BACKGROUND_COLOR, getResources().getColor(com.mcraesolutions.watchfacelibrary.R.color.wait_background_color));
 
             // sync preference value
-            //mCallback.getWatchface().setWaitPhaseBackgroundColor(value); // TODO: why does this crash? use service to sync instead??
             syncIntPreference(PATH_WAIT_PHASE_BACKGROUND_COLOR, EXTRA_WAIT_PHASE_BACKGROUND_COLOR, value);
         }
         /*else if (key.equals(EXTRA_PREPARE_PHASE_START_ALERT_ON))*/ {
-            boolean value = sharedPreferences.getBoolean(EXTRA_PREPARE_PHASE_START_ALERT_ON, true); // TODO: fix default value
+            boolean value = sharedPreferences.getBoolean(EXTRA_PREPARE_PHASE_START_ALERT_ON, getResources().getBoolean(com.mcraesolutions.watchfacelibrary.R.bool.prepare_phase_start_alert_on));
 
             // sync preference value
-            //mCallback.getWatchface().setPreparePhaseStartAlertOn(value); // TODO: why does this crash? use service to sync instead??
             syncBooleanPreference(PATH_PREPARE_PHASE_START_ALERT_ON, EXTRA_PREPARE_PHASE_START_ALERT_ON, value);
         }
         /*else if (key.equals(EXTRA_LIFT_PHASE_START_ALERT_ON))*/ {
-            boolean value = sharedPreferences.getBoolean(EXTRA_LIFT_PHASE_START_ALERT_ON, false); // TODO: fix default value
+            boolean value = sharedPreferences.getBoolean(EXTRA_LIFT_PHASE_START_ALERT_ON, getResources().getBoolean(com.mcraesolutions.watchfacelibrary.R.bool.lift_phase_start_alert_on));
 
             // sync preference value
-            //mCallback.getWatchface().setLiftPhaseStartAlertOn(value); // TODO: why does this crash? use service to sync instead??
             syncBooleanPreference(PATH_LIFT_PHASE_START_ALERT_ON, EXTRA_LIFT_PHASE_START_ALERT_ON, value);
         }
         /*else if (key.equals(EXTRA_WAIT_PHASE_START_ALERT_ON))*/ {
-            boolean value = sharedPreferences.getBoolean(EXTRA_WAIT_PHASE_START_ALERT_ON, false); // TODO: fix default value
+            boolean value = sharedPreferences.getBoolean(EXTRA_WAIT_PHASE_START_ALERT_ON, getResources().getBoolean(com.mcraesolutions.watchfacelibrary.R.bool.wait_phase_start_alert_on));
 
             // sync preference value
-            //mCallback.getWatchface().setWaitPhaseStartAlertOn(value); // TODO: why does this crash? use service to sync instead??
             syncBooleanPreference(PATH_WAIT_PHASE_START_ALERT_ON, EXTRA_WAIT_PHASE_START_ALERT_ON, value);
         }
         /*else if (key.equals(KEY_RESET_DEFAULT_VALUES))*/ {
             boolean value = sharedPreferences.getBoolean(KEY_RESET_DEFAULT_VALUES, false);
 
-            //if (value) {
-            //    resetDefaultValues();
-            //}
-
+            // do nothing
         }
     }
 
@@ -517,8 +519,18 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         sharedPreferences.edit().clear().commit();
 
-        // sync shared preferences
-        syncPreferences();
+        //Timer syncTimer = new Timer();
+        //syncTimer.schedule(new TimerTask() {
+        //    @Override
+        //    public void run() {
+        //        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        //        Log.v(TAG, "syncTimer.run");
+        //        //}
+
+                // sync shared preferences
+                syncPreferences();
+        //    }
+        //}, 0, 1000);
     }
 
     // *** start sync preference data ***
@@ -528,6 +540,10 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         Log.v(TAG, "syncIntPreference: " + path + ", " + key + ", 0x" + Integer.toHexString(value));
         //}
 
+        // broadcast shared preference (in case activity running)
+        Intent intent = new Intent(BROADCAST_UPDATE_SETTINGS_VALUES);
+        intent.putExtra(key, value);
+        getActivity().sendBroadcast(intent);
 
         PutDataMapRequest putDataMapReq = PutDataMapRequest.create(path);
         putDataMapReq.getDataMap().putInt(key, value);
@@ -542,6 +558,11 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         Log.v(TAG, "syncBooleanPreference: " + path + ", " + key + ", " + value);
         //}
 
+        // broadcast shared preference (in case activity running)
+        Intent intent = new Intent(BROADCAST_UPDATE_SETTINGS_VALUES);
+        intent.putExtra(key, value);
+        getActivity().sendBroadcast(intent);
+
         PutDataMapRequest putDataMapReq = PutDataMapRequest.create(path);
         putDataMapReq.getDataMap().putBoolean(key, value);
         PutDataRequest putDataReq = putDataMapReq.asPutDataRequest();
@@ -555,6 +576,11 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         Log.v(TAG, "syncStringPreference: " + path + ", " + key + ", " + value);
         //}
 
+        // broadcast shared preference (in case activity running)
+        Intent intent = new Intent(BROADCAST_UPDATE_SETTINGS_VALUES);
+        intent.putExtra(key, value);
+        getActivity().sendBroadcast(intent);
+
         PutDataMapRequest putDataMapReq = PutDataMapRequest.create(path);
         putDataMapReq.getDataMap().putString(key, value);
         PutDataRequest putDataReq = putDataMapReq.asPutDataRequest();
@@ -567,7 +593,5 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
     public interface ActivityCallbackInterface {
         public GoogleApiClient getGoogleApiClient();
-
-        public WatchfaceLayout getWatchface();
     }
 }

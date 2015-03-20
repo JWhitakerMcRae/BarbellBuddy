@@ -111,8 +111,6 @@ public class SetTimerActivity extends ActionBarActivity
         this.mGoogleApiClient = mGoogleApiClient;
     }
 
-    public WatchfaceLayout getWatchface() { return mSetTimerFragment.getWatchface(); }
-
     // ****************************************************************************************** //
 
     @Override
