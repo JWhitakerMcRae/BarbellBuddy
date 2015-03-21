@@ -45,7 +45,7 @@ public class WatchfaceLayout extends FrameLayout {
     private boolean mWaitPhaseStartAlertOn = getResources().getBoolean(R.bool.wait_phase_start_alert_on);
 
     // set phase enumeration, including built in incrementer (with loopback)
-    enum SetPhaseEnum {
+    public enum SetPhaseEnum {
         PREPARE, // preparing for next set (getting into position)
         LIFT, // LIFTING!!!
         WAIT { // waiting in between sets

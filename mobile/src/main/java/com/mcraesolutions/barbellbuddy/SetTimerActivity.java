@@ -255,7 +255,8 @@ public class SetTimerActivity extends ActionBarActivity
 
         // add on top of SetTimerFragment (rather than replace)
         getFragmentManager().beginTransaction()
-                .replace(R.id.container, mSettingsFragment)
+                .add(R.id.container, mSettingsFragment)
+                .hide(mSetTimerFragment)
                 .addToBackStack(null)
                 .commit();
         return true;
@@ -268,7 +269,8 @@ public class SetTimerActivity extends ActionBarActivity
 
         // add on top of SetTimerFragment (rather than replace)
         getFragmentManager().beginTransaction()
-                .replace(R.id.container, mHelpFragment)
+                .add(R.id.container, mHelpFragment)
+                .hide(mSetTimerFragment)
                 .addToBackStack(null)
                 .commit();
         return true;
