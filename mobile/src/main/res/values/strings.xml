@@ -15,6 +15,9 @@
     <string name="button_set_timer_start">Start</string>
     <string name="button_set_timer_stop">Stop</string>
 
+    <!-- snippet strings -->
+    <string name="unit_seconds">seconds</string>
+
     <!--
     preferences xml strings
     -->

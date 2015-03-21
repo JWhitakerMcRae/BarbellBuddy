@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -17,6 +18,8 @@ import com.google.android.gms.wearable.DataApi;
 import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
+import com.mcraesolutions.utils.ColorPickerPreference;
+import com.mcraesolutions.utils.YesNoPreference;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,9 +33,8 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
     private static final String TAG = "SettingsFragment";
 
-    private OnFragmentInteractionListener mListener;
-
     private ActivityCallbackInterface mCallback;
+    private OnFragmentInteractionListener mListener;
 
     /*
      * Broadcast Actions
@@ -100,10 +102,18 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
      *
      * @return A new instance of fragment SettingsFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static SettingsFragment newInstance() {
         SettingsFragment fragment = new SettingsFragment();
         return fragment;
+    }
+
+    static SettingsFragment sSettingsFragment;
+
+    public static SettingsFragment singleton() {
+        if (sSettingsFragment == null) {
+            sSettingsFragment = new SettingsFragment();
+        }
+        return sSettingsFragment;
     }
 
     public SettingsFragment() {
@@ -120,11 +130,17 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         super.onAttach(activity);
 
         try {
-            mListener = (OnFragmentInteractionListener) activity;
             mCallback = (ActivityCallbackInterface) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener and ActivityCallbackInterface"); // TODO: combine these to 1 interface
+                    + " must implement ActivityCallbackInterface");
+        }
+
+        try {
+            mListener = (OnFragmentInteractionListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
         }
     }
 
@@ -165,9 +181,6 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
         // register preferences onChange listeners
         PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()).registerOnSharedPreferenceChangeListener(this);
-
-        // sync preference values
-        syncPreferences();
     }
 
     @Override
@@ -210,27 +223,24 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         if (key.equals(EXTRA_PREPARE_PHASE_LENGTH_MS)) {
             int value = Integer.parseInt(sharedPreferences.getString(EXTRA_PREPARE_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.prepare_phase_length_ms))));
             updatePreparePhaseLengthPreferenceSummary(value);
-            // TODO: fix preferences so this value is stored as an int not a String
 
             // sync preference value
-            syncIntPreference(PATH_PREPARE_PHASE_LENGTH_MS, EXTRA_PREPARE_PHASE_LENGTH_MS, value);
+            syncIntPreferenceToString(PATH_PREPARE_PHASE_LENGTH_MS, EXTRA_PREPARE_PHASE_LENGTH_MS, value);
         }
         else if (key.equals(EXTRA_LIFT_PHASE_LENGTH_MS)) {
             int value = Integer.parseInt(sharedPreferences.getString(EXTRA_LIFT_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.lift_phase_length_ms))));
             updateLiftPhaseLengthPreferenceSummary(value);
-            // TODO: fix preferences so this value is stored as an int not a String
 
             // sync preference value
-            syncIntPreference(PATH_LIFT_PHASE_LENGTH_MS, EXTRA_LIFT_PHASE_LENGTH_MS, value);
+            syncIntPreferenceToString(PATH_LIFT_PHASE_LENGTH_MS, EXTRA_LIFT_PHASE_LENGTH_MS, value);
 
         }
         else if (key.equals(EXTRA_WAIT_PHASE_LENGTH_MS)) {
             int value = Integer.parseInt(sharedPreferences.getString(EXTRA_WAIT_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.wait_phase_length_ms))));
             updateWaitPhaseLengthPreferenceSummary(value);
-            // TODO: fix preferences so this value is stored as an int not a String
 
             // sync preference value
-            syncIntPreference(PATH_WAIT_PHASE_LENGTH_MS, EXTRA_WAIT_PHASE_LENGTH_MS, value);
+            syncIntPreferenceToString(PATH_WAIT_PHASE_LENGTH_MS, EXTRA_WAIT_PHASE_LENGTH_MS, value);
 
         }
         else if (key.equals(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR)) {
@@ -296,7 +306,6 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
 
@@ -306,6 +315,19 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    public void syncPreferences() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "syncPreferences");
+        //}
+
+        try {
+            syncPreferences(PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()));
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
         }
     }
 
@@ -379,7 +401,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             e.printStackTrace(); // most likely getting called too soon, before Resources object is created
         }
 
-        // TODO: properly initialize summary strings
+        // initialize summary strings
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         updatePreparePhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString(EXTRA_PREPARE_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.prepare_phase_length_ms)))));
         updateLiftPhaseLengthPreferenceSummary(Integer.parseInt(sharedPreferences.getString(EXTRA_LIFT_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.lift_phase_length_ms)))));
@@ -393,7 +415,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
         ListPreference preparePhaseLengthPreference = (ListPreference) findPreference(EXTRA_PREPARE_PHASE_LENGTH_MS);
         try {
-            preparePhaseLengthPreference.setSummary(value/1000 + " seconds"); // TODO: read unit string from strings.xml
+            preparePhaseLengthPreference.setSummary(value/1000 + " " + getResources().getString(R.string.unit_seconds));
         }
         catch (NullPointerException e) {
             e.printStackTrace();
@@ -407,7 +429,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
         ListPreference liftPhaseLengthPreference = (ListPreference) findPreference(EXTRA_LIFT_PHASE_LENGTH_MS);
         try {
-            liftPhaseLengthPreference.setSummary(value/1000 + " seconds"); // TODO: read unit string from strings.xml
+            liftPhaseLengthPreference.setSummary(value/1000 + " " + getResources().getString(R.string.unit_seconds));
         }
         catch (NullPointerException e) {
             e.printStackTrace();
@@ -421,51 +443,105 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
         ListPreference waitPhaseLengthPreference = (ListPreference) findPreference(EXTRA_WAIT_PHASE_LENGTH_MS);
         try {
-            waitPhaseLengthPreference.setSummary(value/1000 + " seconds"); // TODO: read unit string from strings.xml
+            waitPhaseLengthPreference.setSummary(value/1000 + " " + getResources().getString(R.string.unit_seconds));
         }
         catch (NullPointerException e) {
             e.printStackTrace();
         }
     }
 
-    private void syncPreferences() {
+    private void resetDefaultValues() {
         //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "updateWaitPhaseLengthPreferenceSummary");
+        Log.v(TAG, "resetDefaultValues");
         //}
 
-        syncPreferences(PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext()));
+        // clear shared preferences
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        sharedPreferences.edit().clear().commit();
+
+        // reset shared preference default values
+        //resetPreferences();
+
+        // sync shared preferences
+        syncPreferences();
+
+        // TODO: find way to update UI without closing fragment here
+        getFragmentManager().popBackStack();
+    }
+
+    private void resetPreferences() {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "resetPreferences");
+        //}
+
+        //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        //SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        //editor.putString(EXTRA_PREPARE_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.prepare_phase_length_ms)));
+        //editor.putString(EXTRA_LIFT_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.lift_phase_length_ms)));
+        //editor.putString(EXTRA_WAIT_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.wait_phase_length_ms)));
+
+        //editor.putInt(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, getResources().getColor(com.mcraesolutions.watchfacelibrary.R.color.prepare_background_color));
+        //editor.putInt(EXTRA_WAIT_PHASE_BACKGROUND_COLOR, getResources().getColor(com.mcraesolutions.watchfacelibrary.R.color.wait_background_color));
+        //editor.putInt(EXTRA_LIFT_PHASE_BACKGROUND_COLOR, getResources().getColor(com.mcraesolutions.watchfacelibrary.R.color.lift_background_color));
+
+        //editor.putBoolean(EXTRA_PREPARE_PHASE_START_ALERT_ON, getResources().getBoolean(com.mcraesolutions.watchfacelibrary.R.bool.prepare_phase_start_alert_on));
+        //editor.putBoolean(EXTRA_WAIT_PHASE_START_ALERT_ON, getResources().getBoolean(com.mcraesolutions.watchfacelibrary.R.bool.wait_phase_start_alert_on));
+        //editor.putBoolean(EXTRA_LIFT_PHASE_START_ALERT_ON, getResources().getBoolean(com.mcraesolutions.watchfacelibrary.R.bool.lift_phase_start_alert_on));
+
+        //editor.putBoolean(KEY_RESET_DEFAULT_VALUES, false);
+        //editor.commit();
+
+        ListPreference preparePhaseLength_ms = (ListPreference) findPreference(EXTRA_PREPARE_PHASE_LENGTH_MS);
+        preparePhaseLength_ms.setValue(Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.prepare_phase_length_ms)));
+        ListPreference liftPhaseLength_ms = (ListPreference) findPreference(EXTRA_LIFT_PHASE_LENGTH_MS);
+        liftPhaseLength_ms.setValue(Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.lift_phase_length_ms)));
+        ListPreference waitPhaseLength_ms = (ListPreference) findPreference(EXTRA_WAIT_PHASE_LENGTH_MS);
+        waitPhaseLength_ms.setValue(Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.wait_phase_length_ms)));
+
+        ColorPickerPreference preparePhaseBackgroundColor = (ColorPickerPreference) findPreference(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR);
+        preparePhaseBackgroundColor.setValue(getResources().getColor(com.mcraesolutions.watchfacelibrary.R.color.prepare_background_color));
+        ColorPickerPreference liftPhaseBackgroundColor = (ColorPickerPreference) findPreference(EXTRA_LIFT_PHASE_BACKGROUND_COLOR);
+        liftPhaseBackgroundColor.setValue(getResources().getColor(com.mcraesolutions.watchfacelibrary.R.color.lift_background_color));
+        ColorPickerPreference waitPhaseBackgroundColor = (ColorPickerPreference) findPreference(EXTRA_WAIT_PHASE_BACKGROUND_COLOR);
+        waitPhaseBackgroundColor.setValue(getResources().getColor(com.mcraesolutions.watchfacelibrary.R.color.wait_background_color));
+
+        CheckBoxPreference preparePhaseStartAlertOn = (CheckBoxPreference) findPreference(EXTRA_PREPARE_PHASE_START_ALERT_ON);
+        preparePhaseStartAlertOn.setChecked(getResources().getBoolean(com.mcraesolutions.watchfacelibrary.R.bool.prepare_phase_start_alert_on));
+        CheckBoxPreference liftPhaseStartAlertOn = (CheckBoxPreference) findPreference(EXTRA_LIFT_PHASE_START_ALERT_ON);
+        liftPhaseStartAlertOn.setChecked(getResources().getBoolean(com.mcraesolutions.watchfacelibrary.R.bool.lift_phase_start_alert_on));
+        CheckBoxPreference waitPhaseStartAlertOn = (CheckBoxPreference) findPreference(EXTRA_WAIT_PHASE_START_ALERT_ON);
+        waitPhaseStartAlertOn.setChecked(getResources().getBoolean(com.mcraesolutions.watchfacelibrary.R.bool.wait_phase_start_alert_on));
+
+        YesNoPreference resetDefaultValues = (YesNoPreference) findPreference(KEY_RESET_DEFAULT_VALUES);
+        resetDefaultValues.setValue(false);
     }
 
     private void syncPreferences(SharedPreferences sharedPreferences) {
         //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "updateWaitPhaseLengthPreferenceSummary");
+        Log.v(TAG, "syncPreferences: " + sharedPreferences);
         //}
 
         /*if (sharedPreferences.contains(EXTRA_PREPARE_PHASE_LENGTH_MS))*/ {
             int value = Integer.parseInt(sharedPreferences.getString(EXTRA_PREPARE_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.prepare_phase_length_ms))));
             updatePreparePhaseLengthPreferenceSummary(value);
-            // TODO: fix preferences so this value is stored as an int not a String
 
             // sync preference value
-            syncIntPreference(PATH_PREPARE_PHASE_LENGTH_MS, EXTRA_PREPARE_PHASE_LENGTH_MS, value);
+            syncIntPreferenceToString(PATH_PREPARE_PHASE_LENGTH_MS, EXTRA_PREPARE_PHASE_LENGTH_MS, value);
         }
         /*else if (key.equals(EXTRA_LIFT_PHASE_LENGTH_MS))*/ {
             int value = Integer.parseInt(sharedPreferences.getString(EXTRA_LIFT_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.lift_phase_length_ms))));
             updateLiftPhaseLengthPreferenceSummary(value);
-            // TODO: fix preferences so this value is stored as an int not a String
 
             // sync preference value
-            syncIntPreference(PATH_LIFT_PHASE_LENGTH_MS, EXTRA_LIFT_PHASE_LENGTH_MS, value);
-
+            syncIntPreferenceToString(PATH_LIFT_PHASE_LENGTH_MS, EXTRA_LIFT_PHASE_LENGTH_MS, value);
         }
         /*else if (key.equals(EXTRA_WAIT_PHASE_LENGTH_MS))*/ {
             int value = Integer.parseInt(sharedPreferences.getString(EXTRA_WAIT_PHASE_LENGTH_MS, Integer.toString(getResources().getInteger(com.mcraesolutions.watchfacelibrary.R.integer.wait_phase_length_ms))));
             updateWaitPhaseLengthPreferenceSummary(value);
-            // TODO: fix preferences so this value is stored as an int not a String
 
             // sync preference value
-            syncIntPreference(PATH_WAIT_PHASE_LENGTH_MS, EXTRA_WAIT_PHASE_LENGTH_MS, value);
-
+            syncIntPreferenceToString(PATH_WAIT_PHASE_LENGTH_MS, EXTRA_WAIT_PHASE_LENGTH_MS, value);
         }
         /*else if (key.equals(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR))*/ {
             int value = sharedPreferences.getInt(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, getResources().getColor(com.mcraesolutions.watchfacelibrary.R.color.prepare_background_color));
@@ -510,35 +586,41 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         }
     }
 
-    private void resetDefaultValues() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "resetDefaultValues");
-        //}
-
-        // clear shared preferences
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        sharedPreferences.edit().clear().commit();
-
-        //Timer syncTimer = new Timer();
-        //syncTimer.schedule(new TimerTask() {
-        //    @Override
-        //    public void run() {
-        //        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        //        Log.v(TAG, "syncTimer.run");
-        //        //}
-
-                // sync shared preferences
-                syncPreferences();
-        //    }
-        //}, 0, 1000);
-    }
-
-    // *** start sync preference data ***
+    // *** start sync individual preference data ***
 
     private PendingResult<DataApi.DataItemResult> syncIntPreference(String path, String key, int value) {
         //if (Log.isLoggable(TAG, Log.VERBOSE)) {
         Log.v(TAG, "syncIntPreference: " + path + ", " + key + ", 0x" + Integer.toHexString(value));
         //}
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(key, value);
+        editor.commit();
+
+        // broadcast shared preference (in case activity running)
+        Intent intent = new Intent(BROADCAST_UPDATE_SETTINGS_VALUES);
+        intent.putExtra(key, value);
+        getActivity().sendBroadcast(intent);
+
+        PutDataMapRequest putDataMapReq = PutDataMapRequest.create(path);
+        putDataMapReq.getDataMap().putInt(key, value);
+        PutDataRequest putDataReq = putDataMapReq.asPutDataRequest();
+        PendingResult<DataApi.DataItemResult> pendingResult =
+                Wearable.DataApi.putDataItem(mCallback.getGoogleApiClient(), putDataReq);
+        return pendingResult;
+    }
+
+    private PendingResult<DataApi.DataItemResult> syncIntPreferenceToString(String path, String key, int value) {
+        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
+        Log.v(TAG, "syncIntPreference: " + path + ", " + key + ", 0x" + Integer.toHexString(value));
+        //}
+
+        // TODO: not all int preferences should be stored as strings, need to handle this better than just creating a duplicate function that converts preference value to string
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, Integer.toString(value));
+        editor.commit();
 
         // broadcast shared preference (in case activity running)
         Intent intent = new Intent(BROADCAST_UPDATE_SETTINGS_VALUES);
@@ -558,6 +640,11 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         Log.v(TAG, "syncBooleanPreference: " + path + ", " + key + ", " + value);
         //}
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(key, value);
+        editor.commit();
+
         // broadcast shared preference (in case activity running)
         Intent intent = new Intent(BROADCAST_UPDATE_SETTINGS_VALUES);
         intent.putExtra(key, value);
@@ -575,6 +662,11 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         //if (Log.isLoggable(TAG, Log.VERBOSE)) {
         Log.v(TAG, "syncStringPreference: " + path + ", " + key + ", " + value);
         //}
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, value);
+        editor.commit();
 
         // broadcast shared preference (in case activity running)
         Intent intent = new Intent(BROADCAST_UPDATE_SETTINGS_VALUES);

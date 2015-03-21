@@ -181,7 +181,7 @@ public class SetTimerWearActivity extends Activity {
         //if (Log.isLoggable(TAG, Log.VERBOSE)) {
         Log.v(TAG, "readSettingsValues");
         //}
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         // make sure watchface has been inflated
         if (mWatchface == null) {
@@ -191,36 +191,36 @@ public class SetTimerWearActivity extends Activity {
 
         try {
             // set phase lengths (ms) -- set from settings (phone)
-            if (sharedPref.contains(EXTRA_PREPARE_PHASE_LENGTH_MS)) {
-                mWatchface.setPreparePhaseLength_ms(sharedPref.getInt(EXTRA_PREPARE_PHASE_LENGTH_MS, mWatchface.getPreparePhaseLength_ms()));
+            if (sharedPreferences.contains(EXTRA_PREPARE_PHASE_LENGTH_MS)) {
+                mWatchface.setPreparePhaseLength_ms(sharedPreferences.getInt(EXTRA_PREPARE_PHASE_LENGTH_MS, mWatchface.getPreparePhaseLength_ms()));
             }
-            if (sharedPref.contains(EXTRA_LIFT_PHASE_LENGTH_MS)) {
-                mWatchface.setLiftPhaseLength_ms(sharedPref.getInt(EXTRA_LIFT_PHASE_LENGTH_MS, mWatchface.getLiftPhaseLength_ms()));
+            if (sharedPreferences.contains(EXTRA_LIFT_PHASE_LENGTH_MS)) {
+                mWatchface.setLiftPhaseLength_ms(sharedPreferences.getInt(EXTRA_LIFT_PHASE_LENGTH_MS, mWatchface.getLiftPhaseLength_ms()));
             }
-            if (sharedPref.contains(EXTRA_WAIT_PHASE_LENGTH_MS)) {
-                mWatchface.setWaitPhaseLength_ms(sharedPref.getInt(EXTRA_WAIT_PHASE_LENGTH_MS, mWatchface.getWaitPhaseLength_ms()));
+            if (sharedPreferences.contains(EXTRA_WAIT_PHASE_LENGTH_MS)) {
+                mWatchface.setWaitPhaseLength_ms(sharedPreferences.getInt(EXTRA_WAIT_PHASE_LENGTH_MS, mWatchface.getWaitPhaseLength_ms()));
             }
 
             // set phase background colors -- set from settings (phone)
-            if (sharedPref.contains(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR)) {
-                mWatchface.setPreparePhaseBackgroundColor(sharedPref.getInt(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, mWatchface.getPreparePhaseBackgroundColor()));
+            if (sharedPreferences.contains(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR)) {
+                mWatchface.setPreparePhaseBackgroundColor(sharedPreferences.getInt(EXTRA_PREPARE_PHASE_BACKGROUND_COLOR, mWatchface.getPreparePhaseBackgroundColor()));
             }
-            if (sharedPref.contains(EXTRA_LIFT_PHASE_BACKGROUND_COLOR)) {
-                mWatchface.setLiftPhaseBackgroundColor(sharedPref.getInt(EXTRA_LIFT_PHASE_BACKGROUND_COLOR, mWatchface.getLiftPhaseBackgroundColor()));
+            if (sharedPreferences.contains(EXTRA_LIFT_PHASE_BACKGROUND_COLOR)) {
+                mWatchface.setLiftPhaseBackgroundColor(sharedPreferences.getInt(EXTRA_LIFT_PHASE_BACKGROUND_COLOR, mWatchface.getLiftPhaseBackgroundColor()));
             }
-            if (sharedPref.contains(EXTRA_WAIT_PHASE_BACKGROUND_COLOR)) {
-                mWatchface.setWaitPhaseBackgroundColor(sharedPref.getInt(EXTRA_WAIT_PHASE_BACKGROUND_COLOR, mWatchface.getWaitPhaseBackgroundColor()));
+            if (sharedPreferences.contains(EXTRA_WAIT_PHASE_BACKGROUND_COLOR)) {
+                mWatchface.setWaitPhaseBackgroundColor(sharedPreferences.getInt(EXTRA_WAIT_PHASE_BACKGROUND_COLOR, mWatchface.getWaitPhaseBackgroundColor()));
             }
 
             // set phase alert on/off status
-            if (sharedPref.contains(EXTRA_PREPARE_PHASE_START_ALERT_ON)) {
-                mWatchface.setPreparePhaseStartAlertOn(sharedPref.getBoolean(EXTRA_PREPARE_PHASE_START_ALERT_ON, mWatchface.isPreparePhaseStartAlertOn()));
+            if (sharedPreferences.contains(EXTRA_PREPARE_PHASE_START_ALERT_ON)) {
+                mWatchface.setPreparePhaseStartAlertOn(sharedPreferences.getBoolean(EXTRA_PREPARE_PHASE_START_ALERT_ON, mWatchface.isPreparePhaseStartAlertOn()));
             }
-            if (sharedPref.contains(EXTRA_LIFT_PHASE_START_ALERT_ON)) {
-                mWatchface.setLiftPhaseStartAlertOn(sharedPref.getBoolean(EXTRA_LIFT_PHASE_START_ALERT_ON, mWatchface.isLiftPhaseStartAlertOn()));
+            if (sharedPreferences.contains(EXTRA_LIFT_PHASE_START_ALERT_ON)) {
+                mWatchface.setLiftPhaseStartAlertOn(sharedPreferences.getBoolean(EXTRA_LIFT_PHASE_START_ALERT_ON, mWatchface.isLiftPhaseStartAlertOn()));
             }
-            if (sharedPref.contains(EXTRA_WAIT_PHASE_START_ALERT_ON)) {
-                mWatchface.setWaitPhaseStartAlertOn(sharedPref.getBoolean(EXTRA_WAIT_PHASE_START_ALERT_ON, mWatchface.isWaitPhaseStartAlertOn()));
+            if (sharedPreferences.contains(EXTRA_WAIT_PHASE_START_ALERT_ON)) {
+                mWatchface.setWaitPhaseStartAlertOn(sharedPreferences.getBoolean(EXTRA_WAIT_PHASE_START_ALERT_ON, mWatchface.isWaitPhaseStartAlertOn()));
             }
         }
         catch (NullPointerException e) { // most likely initSettingsValues didn't complete successfully, possibly bad shared preferences or watchface object

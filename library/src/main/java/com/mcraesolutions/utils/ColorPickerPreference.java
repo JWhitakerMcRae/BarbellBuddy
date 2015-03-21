@@ -246,4 +246,11 @@ public class ColorPickerPreference extends DialogPreference implements ColorPick
                 };
     }
 
+    public int getValue() {
+        return mColor;
+    }
+
+    public void setValue(int mColor) {
+        this.mColor = mColor;
+    }
 }

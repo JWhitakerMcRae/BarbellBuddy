@@ -13,7 +13,6 @@ import com.google.android.gms.wearable.MessageApi;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
-import com.mcraesolutions.watchfacelibrary.WatchfaceLayout;
 
 
 public class SetTimerActivity extends ActionBarActivity
@@ -160,7 +159,7 @@ public class SetTimerActivity extends ActionBarActivity
         //}
 
         mSetTimerFragment = new SetTimerFragment(); // TODO: have each fragment track its own singleton
-        mSettingsFragment = new SettingsFragment(); // TODO: have each fragment track its own singleton
+        mSettingsFragment = SettingsFragment.singleton();
         mHelpFragment = new HelpFragment(); // TODO: have each fragment track its own singleton
     }
 
