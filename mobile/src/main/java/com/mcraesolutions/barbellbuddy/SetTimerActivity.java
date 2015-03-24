@@ -253,12 +253,19 @@ public class SetTimerActivity extends ActionBarActivity
         Log.v(TAG, "openSettings");
         //}
 
-        // add on top of SetTimerFragment (rather than replace)
-        getFragmentManager().beginTransaction()
-                .add(R.id.container, mSettingsFragment)
-                .hide(mSetTimerFragment)
-                .addToBackStack(null)
-                .commit();
+        // make sure the backstack is clean
+        if (mHelpFragment.isAdded()) {
+            getFragmentManager().popBackStack();
+        }
+
+        // open settings fragment
+        if (!mSettingsFragment.isAdded()) {
+            getFragmentManager().beginTransaction()
+                    .add(R.id.container, mSettingsFragment)
+                    .addToBackStack(null)
+                    .hide(mSetTimerFragment)
+                    .commit();
+        }
         return true;
     }
 
@@ -267,12 +274,19 @@ public class SetTimerActivity extends ActionBarActivity
         Log.v(TAG, "openHelp");
         //}
 
-        // add on top of SetTimerFragment (rather than replace)
-        getFragmentManager().beginTransaction()
-                .add(R.id.container, mHelpFragment)
-                .hide(mSetTimerFragment)
-                .addToBackStack(null)
-                .commit();
+        // make sure the backstack is clean
+        if (mSettingsFragment.isAdded()) {
+            getFragmentManager().popBackStack();
+        }
+
+        // open help fragment
+        if (!mHelpFragment.isAdded()) {
+            getFragmentManager().beginTransaction()
+                    .add(R.id.container, mHelpFragment)
+                    .addToBackStack(null)
+                    .hide(mSetTimerFragment)
+                    .commit();
+        }
         return true;
     }
 }
