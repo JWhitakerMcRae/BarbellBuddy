@@ -260,7 +260,7 @@ public class SetTimerActivity extends ActionBarActivity
 
         // open settings fragment
         if (!mSettingsFragment.isAdded()) {
-            getFragmentManager().beginTransaction()
+            getFragmentManager().beginTransaction() // TODO: set fragment transition, but shouldn't be used on backstack clean call
                     .add(R.id.container, mSettingsFragment)
                     .addToBackStack(null)
                     .hide(mSetTimerFragment)
@@ -281,7 +281,7 @@ public class SetTimerActivity extends ActionBarActivity
 
         // open help fragment
         if (!mHelpFragment.isAdded()) {
-            getFragmentManager().beginTransaction()
+            getFragmentManager().beginTransaction() // TODO: set fragment transition, but shouldn't be used on backstack clean call
                     .add(R.id.container, mHelpFragment)
                     .addToBackStack(null)
                     .hide(mSetTimerFragment)
