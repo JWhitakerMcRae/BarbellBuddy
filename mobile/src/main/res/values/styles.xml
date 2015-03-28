@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
 
-        <!--<item name="android:textColorTertiary">#31b6e7</item>-->
+        <!--<item name="android:textColorTertiary">#00A37A</item>-->
 
         <item name="android:textAppearance">@style/TextAppearance</item>
         <item name="android:textAppearanceLarge">@style/TextAppearance.Large</item>
@@ -45,6 +45,7 @@
     -->
 
     <style name="SectionHeader" parent="android:Widget.Holo.Light.TextView">
+        <item name="android:textColor">#00A37A</item>
         <!-- derived based on an answer from: http://stackoverflow.com/questions/10020466/android-4-0-sub-title-section-label-styling -->
         <item name="android:drawablePadding">4dp</item>
         <item name="android:layout_marginTop">8dp</item>
@@ -53,10 +54,14 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?android:textColorTertiary</item>
+        <!--<item name="android:textColor">?android:textColorTertiary</item>-->
         <item name="android:textSize">14sp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingLeft">8dip</item>
+    </style>
+
+    <style name="SectionHelp" parent="TextAppearance.Medium">
+
     </style>
 
 </resources>
