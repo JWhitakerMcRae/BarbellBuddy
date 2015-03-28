@@ -229,9 +229,11 @@ public class SetTimerActivity extends ActionBarActivity
                             MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(mGoogleApiClient, node.getId(), getResources().getString(R.string.path_start_wear_activity), null).await();
                             if (result.getStatus().isSuccess()) {
                                 Log.i("test", "success!! sent to: " + node.getDisplayName());
+                                // TODO: Toast success message
                             }
                             else {
                                 Log.e("test", "error");
+                                // TODO: Toast failure message
                             }
                         }
                     }

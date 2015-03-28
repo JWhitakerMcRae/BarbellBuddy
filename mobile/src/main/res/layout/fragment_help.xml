@@ -1,6 +1,14 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mcraesolutions.barbellbuddy.HelpFragment">
+    tools:context="com.mcraesolutions.barbellbuddy.HelpFragment" >
+
+    <!-- Layout used for PreferenceCategory in a PreferenceActivity. -->
+    <TextView
+        android:id="@+android:id/title"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="This is some text, bitchesss"
+        android:textAppearance="@style/SectionHeader" />
 
 </FrameLayout>
