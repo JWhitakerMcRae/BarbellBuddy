@@ -67,10 +67,10 @@
     -->
 
     <string name="help_question_1">What is Barbell Buddy?</string>
-    <string name="help_answer_1">Barbell Buddy is a set timer app targeting users who already have a workout routine.  Aimed at Android Wear users, it is meant to act as a gentle “start next set” assistant ensuring you rest the perfect amount of time in between sets.</string>
+    <string name="help_answer_1">Barbell Buddy is a set timer app targeting users who already have a workout routine.  Aimed at Android Wear users, it is meant to act as a gentle “start next set” assistant, ensuring you rest the perfect amount of time in between sets!</string>
 
     <string name="help_question_2">What are the set phases?</string>
-    <string name="help_answer_2">Barbell Buddy uses 3 distinct set phases: Prepare, Lift, and Wait.  The Prepare phase is meant to allow the user to get situated with the gym equipment, the Lift phase indicates the workout set is active, and the Wait phase is the rest timer before preparing for the next set.  These phases can be customized in the app Settings.</string>
+    <string name="help_answer_2">Barbell Buddy uses 3 distinct set phases: <b>Prepare</b>, <b>Lift</b>, and <b>Wait</b>.  The Prepare phase is meant to allow the user to get situated with the gym equipment, the Lift phase indicates the workout set is active, and the Wait phase is the rest timer before preparing for the next set.  These phases can be customized in the app Settings.</string>
 
     <string name="help_question_3">How should I use Barbell Buddy?</string>
     <string name="help_answer_3">On your Android Wear watch you can say: “OK Google, start a workout” to launch Barbell Buddy.  A gentle vibration will alert you when it is time to prepare for your upcoming set.  After each set is finished, tap anywhere on the watch face to reset the timer to the Wait phase.  A double tap will instead reset the timer to the Prepare phase.</string>
@@ -79,6 +79,6 @@
     <string name="help_answer_4">Yes!  We are currently working on an auto-gym detection feature, which will launch Barbell Buddy on your Android Wear watch when you arrive at your gym.  In the future we also hope to employ an auto-set end detection feature, as well as keep some basic workout stats for you to view after your session.</string>
 
     <string name="help_question_5">How can I contact you for feedback and suggestions?</string>
-    <string name="help_answer_5">We would love to hear your feedback and suggestions! We can be contacted at <a ref="mailto:barbellbuddy@mcraesolutions.com">barbellbuddy@mcraesolutions.com</a>, and will strive to respond personally to each email.  Thanks in advance for reaching out :)</string>
+    <string name="help_answer_5">We would love to hear your feedback and suggestions! We can be contacted at <a ref="mailto:barbellbuddy@mcraesolutions.com">barbellbuddy@mcraesolutions.com</a>, and will strive to respond personally to each email.  Thanks in advance for reaching out, you\'re awesome <b>:)</b></string>
 
 </resources>
