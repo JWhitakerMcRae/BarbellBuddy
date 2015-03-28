@@ -1,11 +1,10 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.mcraesolutions.barbellbuddy.HelpFragment" >
+    tools:context="com.mcraesolutions.barbellbuddy.HelpFragment"
+    android:orientation="vertical" >
 
-    <!-- Layout used for PreferenceCategory in a PreferenceActivity. -->
     <TextView
-        android:id="@+android:id/title"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_margin="16dp"
@@ -15,4 +14,12 @@
         android:textAppearance="@style/SectionHeader" />
     <!-- textColor value gotten using: http://www.w3schools.com/tags/ref_colorpicker.asp -->
 
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:paddingLeft="16dp"
+        android:text="Phase Length"
+        android:textAppearance="@style/TextAppearance.Medium"/>
+
+</LinearLayout>
