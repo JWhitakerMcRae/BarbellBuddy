@@ -8,7 +8,11 @@
         android:id="@+android:id/title"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="This is some text, bitchesss"
+        android:layout_margin="16dp"
+        android:paddingLeft="8dp"
+        android:text="Prepare"
+        android:textColor="#00A37A"
         android:textAppearance="@style/SectionHeader" />
+    <!-- textColor value gotten using: http://www.w3schools.com/tags/ref_colorpicker.asp -->
 
 </FrameLayout>
