@@ -42,18 +42,18 @@ public class HelpFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onCreate");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onCreate");
+        }
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onCreateView");
-        //}
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onCreateView");
+        }
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_help, container, false);
     }
@@ -67,9 +67,9 @@ public class HelpFragment extends Fragment {
 
     @Override
     public void onAttach(Activity activity) {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onAttach");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onAttach");
+        }
         super.onAttach(activity);
 
         try {
@@ -82,9 +82,9 @@ public class HelpFragment extends Fragment {
 
     @Override
     public void onDetach() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onDetach");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onDetach");
+        }
         super.onDetach();
 
         mListener = null;

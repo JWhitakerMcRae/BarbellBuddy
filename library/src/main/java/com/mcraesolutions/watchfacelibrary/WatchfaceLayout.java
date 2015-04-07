@@ -100,9 +100,9 @@ public class WatchfaceLayout extends FrameLayout {
     View.OnClickListener mOnResetListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-            Log.v(TAG, "mOnResetListener.onClick");
-            //}
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "mOnResetListener.onClick");
+            }
 
             // reset current set phase
             if (mCurrentSetPhase == SetPhaseEnum.WAIT && getCurrentSetPhaseElapsedTime_ms() < 500) { // TODO: detect double tap better???
@@ -134,9 +134,9 @@ public class WatchfaceLayout extends FrameLayout {
     }
 
     private void initViewObjects() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "initViewObjects");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "initViewObjects");
+        }
 
         // find view objects
         mSetTimerBackground = (ImageView) findViewById(R.id.imageView_setTimerBackground);
@@ -152,9 +152,9 @@ public class WatchfaceLayout extends FrameLayout {
     }
 
     private void initUiForCurrentSetPhase() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "initViewObjects");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "initViewObjects");
+        }
 
         // run current set phase to initialize UI
         switch (mCurrentSetPhase) {
@@ -182,9 +182,9 @@ public class WatchfaceLayout extends FrameLayout {
      * @param elapsedTime
      */
     void runPrepare(long elapsedTime) {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "runPrepare: " + elapsedTime);
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "runPrepare: " + elapsedTime);
+        }
 
         // update set timer visual view
         updateSetTimerVisualUi(elapsedTime);
@@ -207,9 +207,9 @@ public class WatchfaceLayout extends FrameLayout {
      * @param elapsedTime
      */
     void runLift(long elapsedTime) {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "runLift: " + elapsedTime);
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "runLift: " + elapsedTime);
+        }
 
         // update set timer visual view
         updateSetTimerVisualUi(elapsedTime);
@@ -232,9 +232,9 @@ public class WatchfaceLayout extends FrameLayout {
      * @param elapsedTime
      */
     void runWait(long elapsedTime) {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "runWait: " + elapsedTime);
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "runWait: " + elapsedTime);
+        }
 
         // update set timer visual view
         updateSetTimerVisualUi(elapsedTime);
@@ -249,9 +249,9 @@ public class WatchfaceLayout extends FrameLayout {
      * Update the set timer view.
      */
     protected void updateSetTimerVisualUi(long elapsedTime) {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "updateSetTimerVisualUi: " + elapsedTime);
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "updateSetTimerVisualUi: " + elapsedTime);
+        }
 
         // update progress bar
         int progress = 0;
@@ -276,9 +276,9 @@ public class WatchfaceLayout extends FrameLayout {
      * This should be called whenever the set phase changes.
      */
     void updateCurrentSetPhaseUi() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "updateCurrentSetPhaseUi");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "updateCurrentSetPhaseUi");
+        }
 
         // update views
         switch (mCurrentSetPhase) {
@@ -298,9 +298,9 @@ public class WatchfaceLayout extends FrameLayout {
     }
 
     void issueCurrentSetPhaseAlerts() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "issueCurrentSetPhaseAlerts");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "issueCurrentSetPhaseAlerts");
+        }
 
         // issue alerts
         switch (mCurrentSetPhase) {
@@ -334,9 +334,9 @@ public class WatchfaceLayout extends FrameLayout {
      * @return background Bitmap object based on the current set phase
      */
     private Bitmap createBackground() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "createBackground");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "createBackground");
+        }
 
         // get screen size
         int width = 1080; // TODO: correctly get available space in a way that works on all devices
@@ -383,9 +383,9 @@ public class WatchfaceLayout extends FrameLayout {
     //
 
     public void nextSetPhase() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "nextSetPhase");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "nextSetPhase");
+        }
 
         setCurrentSetPhase(mCurrentSetPhase.next());
 
@@ -397,9 +397,9 @@ public class WatchfaceLayout extends FrameLayout {
     }
 
     public void prepareSetPhase() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "prepareSetPhase");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "prepareSetPhase");
+        }
 
         setCurrentSetPhase(SetPhaseEnum.PREPARE);
 
@@ -411,9 +411,9 @@ public class WatchfaceLayout extends FrameLayout {
     }
 
     public void liftSetPhase() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "liftSetPhase");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "liftSetPhase");
+        }
 
         setCurrentSetPhase(SetPhaseEnum.PREPARE);
 
@@ -425,9 +425,9 @@ public class WatchfaceLayout extends FrameLayout {
     }
 
     public void waitSetPhase() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "waitSetPhase");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "waitSetPhase");
+        }
 
         setCurrentSetPhase(SetPhaseEnum.PREPARE);
 
@@ -442,9 +442,9 @@ public class WatchfaceLayout extends FrameLayout {
      * Start the chronometer.
      */
     public void startChronometer() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "startChronometer");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "startChronometer");
+        }
 
         if (!mChronometerRunning) {
             mSetTimerChrono.setBase(SystemClock.elapsedRealtime() - mChronometerBase);
@@ -457,9 +457,9 @@ public class WatchfaceLayout extends FrameLayout {
      * Stop the chronometer.
      */
     public void stopChronometer() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "stopChronometer");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "stopChronometer");
+        }
 
         if (mChronometerRunning) { // stopping chrono, save base difference
             mChronometerBase = SystemClock.elapsedRealtime() - mSetTimerChrono.getBase();
@@ -472,9 +472,9 @@ public class WatchfaceLayout extends FrameLayout {
      * Reset the chronometer.
      */
     public void resetChronometer() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "resetChronometer");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "resetChronometer");
+        }
         mSetTimerChrono.setBase(SystemClock.elapsedRealtime());
     }
 

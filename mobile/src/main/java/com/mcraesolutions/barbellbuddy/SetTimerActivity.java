@@ -33,9 +33,9 @@ public class SetTimerActivity extends ActionBarActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onCreate");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onCreate");
+        }
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_set_timer);
@@ -52,9 +52,9 @@ public class SetTimerActivity extends ActionBarActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onCreateOptionsMenu");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onCreateOptionsMenu");
+        }
 
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_set_timer, menu);
@@ -63,9 +63,9 @@ public class SetTimerActivity extends ActionBarActivity
 
     @Override
     protected void onStart() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onStart");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onStart");
+        }
         super.onStart();
 
         // initialize Google API client
@@ -80,9 +80,9 @@ public class SetTimerActivity extends ActionBarActivity
 
     @Override
     protected void onStop() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onStop");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onStop");
+        }
         super.onStop();
 
         // disconnect Google API Client
@@ -114,9 +114,9 @@ public class SetTimerActivity extends ActionBarActivity
 
     @Override
     public void onBackPressed() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onBackPressed");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onBackPressed");
+        }
 
         if (getFragmentManager().getBackStackEntryCount() != 0) {
             getFragmentManager().popBackStack();
@@ -128,9 +128,9 @@ public class SetTimerActivity extends ActionBarActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onOptionsItemSelected");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onOptionsItemSelected");
+        }
 
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -154,9 +154,9 @@ public class SetTimerActivity extends ActionBarActivity
     // ****************************************************************************************** //
 
     private void initFragments() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "initFragments");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "initFragments");
+        }
 
         mSetTimerFragment = new SetTimerFragment(); // TODO: have each fragment track its own singleton
         mSettingsFragment = SettingsFragment.singleton();
@@ -164,9 +164,9 @@ public class SetTimerActivity extends ActionBarActivity
     }
 
     private void initGoogleApi() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "initGoogleApi");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "initGoogleApi");
+        }
 
         // Create instance
         if (mGoogleApiClient == null) {
@@ -201,18 +201,18 @@ public class SetTimerActivity extends ActionBarActivity
     }
 
     private void disconnectGoogleApi() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "disconnectGoogleApi");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "disconnectGoogleApi");
+        }
 
         // Stop connection
         mGoogleApiClient.disconnect();
     }
 
     private boolean startWearApp() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "startWearApp");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "startWearApp");
+        }
 
         // sync value to wearable
         if (mGoogleApiClientConnected && mGoogleApiClient != null) {
@@ -251,9 +251,9 @@ public class SetTimerActivity extends ActionBarActivity
     }
 
     private boolean openSettings() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "openSettings");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "openSettings");
+        }
 
         // make sure the backstack is clean
         if (mHelpFragment.isAdded()) {
@@ -272,9 +272,9 @@ public class SetTimerActivity extends ActionBarActivity
     }
 
     private boolean openHelp() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "openHelp");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "openHelp");
+        }
 
         // make sure the backstack is clean
         if (mSettingsFragment.isAdded()) {

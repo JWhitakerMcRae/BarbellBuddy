@@ -59,9 +59,9 @@ public class SetTimerWearActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onCreate");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onCreate");
+        }
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_set_timer_wear);
@@ -89,9 +89,9 @@ public class SetTimerWearActivity extends Activity {
 
     @Override
     protected void onStart() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onStart");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onStart");
+        }
         super.onStart();
 
         // initialize settings values from resource file
@@ -103,9 +103,9 @@ public class SetTimerWearActivity extends Activity {
 
     @Override
     protected void onResume() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onResume");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onResume");
+        }
         super.onResume();
 
         // read settings values
@@ -123,9 +123,9 @@ public class SetTimerWearActivity extends Activity {
 
     @Override
     protected void onPause() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onPause");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onPause");
+        }
         super.onPause();
 
         // deregister update settings receiver
@@ -141,9 +141,9 @@ public class SetTimerWearActivity extends Activity {
     // ****************************************************************************************** //
 
     private void initSettingsValues() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "initSettingsValues");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "initSettingsValues");
+        }
 
         try {
             /*
@@ -178,9 +178,9 @@ public class SetTimerWearActivity extends Activity {
     }
 
     private void readSettingsValues() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "readSettingsValues");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "readSettingsValues");
+        }
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         // make sure watchface has been inflated
@@ -229,9 +229,9 @@ public class SetTimerWearActivity extends Activity {
     }
 
     private void updateSettingsValues(Intent intent) {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "updateSettingsValues");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "updateSettingsValues");
+        }
 
         try {
             // set phase lengths (ms) -- set from settings (phone)

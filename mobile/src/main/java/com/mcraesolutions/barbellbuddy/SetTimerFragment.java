@@ -80,9 +80,9 @@ public class SetTimerFragment extends Fragment {
     View.OnClickListener mOnStartStopListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-            Log.v(TAG, "mOnStartStopListener.onClick");
-            //}
+            if (Log.isLoggable(TAG, Log.VERBOSE)) {
+                Log.v(TAG, "mOnStartStopListener.onClick");
+            }
 
             // toggle chronometer
             if (mWatchface.isChronometerRunning()) {
@@ -134,9 +134,9 @@ public class SetTimerFragment extends Fragment {
 
     @Override
     public void onAttach(Activity activity) {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onAttach");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onAttach");
+        }
         super.onAttach(activity);
 
         try {
@@ -149,27 +149,27 @@ public class SetTimerFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onCreate");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onCreate");
+        }
         super.onCreate(savedInstanceState);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onCreateView");
-        //}
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onCreateView");
+        }
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_set_timer, container, false);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onActivityCreated");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onActivityCreated");
+        }
         super.onActivityCreated(savedInstanceState);
 
         // NOTE: although the wear app keeps screen on here the mobile app does not
@@ -190,9 +190,9 @@ public class SetTimerFragment extends Fragment {
 
     @Override
     public void onResume() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onResume");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onResume");
+        }
         super.onResume();
 
         // initialize settings values from resource file
@@ -215,9 +215,9 @@ public class SetTimerFragment extends Fragment {
 
     @Override
     public void onPause() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onPause");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onPause");
+        }
         super.onPause();
 
         // deregister update settings receiver
@@ -234,9 +234,9 @@ public class SetTimerFragment extends Fragment {
 
     @Override
     public void onDetach() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "onDetach");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "onDetach");
+        }
         super.onDetach();
 
         mListener = null;
@@ -269,9 +269,9 @@ public class SetTimerFragment extends Fragment {
     // ****************************************************************************************** //
 
     private void initSettingsValues() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "initSettingsValues");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "initSettingsValues");
+        }
 
         try {
                 /*
@@ -309,9 +309,10 @@ public class SetTimerFragment extends Fragment {
     }
 
     private void readSettingsValues() {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "readSettingsValues");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "readSettingsValues");
+        }
+
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
 
         try {
@@ -354,9 +355,9 @@ public class SetTimerFragment extends Fragment {
     }
 
     private void updateSettingsValues(Intent intent) {
-        //if (Log.isLoggable(TAG, Log.VERBOSE)) {
-        Log.v(TAG, "updateSettingsValues");
-        //}
+        if (Log.isLoggable(TAG, Log.VERBOSE)) {
+            Log.v(TAG, "updateSettingsValues");
+        }
 
         try {
             // set phase lengths (ms) -- set from settings (phone)
