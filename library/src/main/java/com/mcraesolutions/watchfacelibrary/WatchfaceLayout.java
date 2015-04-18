@@ -338,6 +338,8 @@ public class WatchfaceLayout extends FrameLayout {
             Log.v(TAG, "createBackground");
         }
 
+        // TODO: make only watchface circle clickable, not watchface background
+
         // get screen size
         int width = 1080; // TODO: correctly get available space in a way that works on all devices
         int height = 1080; // TODO: correctly get available space in a way that works on all devices
