@@ -40,14 +40,18 @@
 
     <Button
         android:id="@+id/button_setTimerStartStop"
-        android:layout_width="wrap_content"
+        android:background="@drawable/button_drawable"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:paddingBottom="@dimen/padding_button"
         android:paddingLeft="@dimen/padding_button_sides"
         android:paddingRight="@dimen/padding_button_sides"
         android:paddingTop="@dimen/padding_button"
-        android:text="@string/button_set_timer_start"/>
+        android:text="@string/button_set_timer_start"
+        android:textColor="@android:color/white"/>
 
 </RelativeLayout>
