@@ -34,7 +34,7 @@
     </style>
 
     <style name="TextAppearance.Medium" parent="Base.TextAppearance.AppCompat.Medium">
-
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="TextAppearance.Small" parent="Base.TextAppearance.AppCompat.Small">
