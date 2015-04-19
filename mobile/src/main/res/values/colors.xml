@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item type="color" name="theme_primary">#4085B3</item>
+    <item type="color" name="theme_primary">#60748C</item>
+    <item type="color" name="theme_secondary">#8090a3</item>
 </resources>

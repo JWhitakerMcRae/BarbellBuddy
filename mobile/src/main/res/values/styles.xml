@@ -50,7 +50,6 @@
         <item name="android:drawablePadding">4dp</item>
         <item name="android:layout_marginTop">8dp</item>
         <!-- this is coped from Widget.TextView.ListSeparator in sdk android-21 -->
-        <item name="background">@drawable/dark_header_dither</item> <!-- TODO: this doesn't seem to do anything?! remove it and associated resources? -->
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>
