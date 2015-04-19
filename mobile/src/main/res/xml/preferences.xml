@@ -89,7 +89,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/action_reset">
+        android:title="@string/reset_default_values_preferences">
 
         <com.mcraesolutions.utils.YesNoPreference
             android:key="@string/key_reset_default_values"

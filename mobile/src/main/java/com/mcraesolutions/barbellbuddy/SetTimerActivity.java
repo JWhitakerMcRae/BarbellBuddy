@@ -2,6 +2,7 @@ package com.mcraesolutions.barbellbuddy;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -124,6 +125,9 @@ public class SetTimerActivity extends ActionBarActivity
         else {
             super.onBackPressed();
         }
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false); // TODO: find better way to toggle action bar back button
+        getSupportActionBar().setTitle(getResources().getString(R.string.app_name)); // TODO: find better way to set this
     }
 
     @Override
@@ -137,14 +141,19 @@ public class SetTimerActivity extends ActionBarActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_start_wear_app) {
+        switch (id) {
+
+        case android.R.id.home: // respond to action bar's Up/Home button
+            onBackPressed();
+        case R.id.action_start_wear_app:
             return startWearApp();
-        }
-        else if (id == R.id.action_settings) {
+        case R.id.action_settings:
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true); // TODO: find better way to toggle action bar back button
+            getSupportActionBar().setTitle(getResources().getString(R.string.action_settings)); // TODO: find better way to set this
             return openSettings();
-        }
-        else if (id == R.id.action_help) {
+        case R.id.action_help:
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true); // TODO: find better way to toggle action bar back button
+            getSupportActionBar().setTitle(getResources().getString(R.string.action_help)); // TODO: find better way to set this & pull string from resources
             return openHelp();
         }
 

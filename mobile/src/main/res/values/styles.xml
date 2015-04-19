@@ -11,6 +11,7 @@
         <item name="android:textColor">@android:color/black</item> <!-- TextView text, actionbar item text, preferences title text color -->
         <item name="android:textColorPrimary">@android:color/white</item> <!-- action bar text color -->
         <item name="android:textColorSecondary">@android:color/black</item> <!-- preferences summary text color -->
+        <item name="android:textColorTertiary">@color/theme_primary</item>
 
         <!-- Support library compatibility -->
         <item name="colorPrimary">@color/theme_primary</item> <!-- actionbar background color -->
@@ -44,8 +45,7 @@
     Standalone styles
     -->
 
-    <style name="SectionHeader" parent="Base.TextAppearance.AppCompat.Title">
-        <item name="android:textColor">@color/theme_primary</item>
+    <style name="SectionHeader">
         <!-- derived based on an answer from: http://stackoverflow.com/questions/10020466/android-4-0-sub-title-section-label-styling -->
         <item name="android:drawablePadding">4dp</item>
         <item name="android:layout_marginTop">8dp</item>
@@ -53,7 +53,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textStyle">bold</item>
-        <!--<item name="android:textColor">?android:textColorTertiary</item>-->
+        <item name="android:textColor">?android:textColorTertiary</item>
         <item name="android:textSize">14sp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingLeft">8dip</item>
