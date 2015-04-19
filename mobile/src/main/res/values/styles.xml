@@ -14,7 +14,7 @@
         <item name="android:textColorTertiary">@color/theme_primary</item>
 
         <!-- Support library compatibility -->
-        <item name="colorPrimary">@color/theme_primary</item> <!-- actionbar background color -->
+        <item name="colorPrimary">@color/theme_secondary</item> <!-- actionbar background color -->
         <item name="colorAccent">@color/theme_primary</item> <!-- preferences category text color -->
 
     </style>
