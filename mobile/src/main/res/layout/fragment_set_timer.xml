@@ -1,9 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_height="match_parent"
     tools:context=".SetTimerActivity$PlaceholderFragment">
 
     <TextView
@@ -31,12 +28,27 @@
         android:textAppearance="@style/TextAppearance.Medium"
         android:visibility="gone"/>
 
-    <com.mcraesolutions.watchfacelibrary.WatchfaceLayout
-        android:id="@+id/watchfaceLayout_watchface"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="65dp"
-        android:layout_gravity="center"/>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:paddingBottom="90dp">
+
+        <ImageView
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_marginLeft="-1dp"
+            android:layout_marginTop="-2dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/bezel_transparent_glass"/>
+
+        <com.mcraesolutions.watchfacelibrary.WatchfaceLayout
+            android:id="@+id/watchfaceLayout_watchface"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
 
     <Button
         android:id="@+id/button_setTimerStartStop"
@@ -45,6 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="75dp"
         android:layout_marginRight="75dp"
+        android:layout_marginBottom="30dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:paddingBottom="@dimen/padding_button"
