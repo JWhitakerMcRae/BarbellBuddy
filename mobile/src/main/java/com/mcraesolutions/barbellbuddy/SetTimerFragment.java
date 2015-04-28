@@ -211,8 +211,6 @@ public class SetTimerFragment extends Fragment {
         }
     }
 
-    boolean mChronometerRunning = false;
-
     @Override
     public void onPause() {
         if (Log.isLoggable(TAG, Log.VERBOSE)) {

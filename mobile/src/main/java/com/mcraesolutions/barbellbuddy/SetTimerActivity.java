@@ -145,6 +145,7 @@ public class SetTimerActivity extends ActionBarActivity
 
         case android.R.id.home: // respond to action bar's Up/Home button
             onBackPressed();
+            break;
         case R.id.action_start_wear_app:
             return startWearApp();
         case R.id.action_settings:

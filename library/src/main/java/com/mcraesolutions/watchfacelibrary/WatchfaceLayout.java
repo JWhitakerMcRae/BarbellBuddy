@@ -478,6 +478,7 @@ public class WatchfaceLayout extends FrameLayout {
             Log.v(TAG, "resetChronometer");
         }
         mSetTimerChrono.setBase(SystemClock.elapsedRealtime());
+        mChronometerBase = 0; // also reset base to 0 in case chrono is stopped
     }
 
     public boolean isChronometerRunning() {
