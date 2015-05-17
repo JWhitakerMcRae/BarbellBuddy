@@ -246,6 +246,8 @@ public class SetTimerActivity extends ActionBarActivity
                                 // TODO: Toast failure message
                             }
                         }
+                        // TODO: Toast no Android Wear detected message if no nodes in above loop, something like:
+                        // Toast.makeText(getApplicationContext(), getResources().getString(R.string.wear_device_not_detected), Toast.LENGTH_SHORT).show();
                     }
                 }).start();
                 return true;
