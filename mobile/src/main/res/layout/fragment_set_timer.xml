@@ -11,7 +11,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginBottom="0dp"
-        android:text="@string/textview_set_timer_info"
+        android:te@string/textview_set_timer_info"
         android:textAppearance="@style/SectionHeader"
         android:visibility="gone"/>
 

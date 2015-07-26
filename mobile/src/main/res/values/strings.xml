@@ -55,7 +55,7 @@
 
     <string name="reset_default_values_preferences">Reset</string>
     <string name="reset_default_values_title">Reset Defaults</string>
-    <string name="reset_default_values_summary">Revert all settings to their default values.</string>
+    <string name="reset_default_values_summary">Revert all settings to their default values</string>
     <string name="reset_default_values_dialog_message">Are you sure you want to revert all settings to their default values?</string>
 
     <!--
