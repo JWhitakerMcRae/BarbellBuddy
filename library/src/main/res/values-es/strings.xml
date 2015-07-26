@@ -1,0 +1,14 @@
+<resources>
+    <!-- Translations by Mariano Coll on 13 JUL 2015 -->
+
+    <string name="app_name">Su Esfera Biblioteca</string>
+
+    <!-- set phase title strings -->
+    <string name="prepare_phase_title">PREPARATE</string>
+    <string name="lift_phase_title">¡LEVANTA O ELEVA!</string>
+    <string name="wait_phase_title">ESPERA</string>
+
+    <!-- ImageView descriptions -->
+    <string name="background_image_description">Esta es la imagen de fondo su esfera. Por lo general cambia con la fase de ajuste.</string>
+
+</resources>

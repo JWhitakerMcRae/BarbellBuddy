@@ -1,0 +1,82 @@
+<resources>
+    <!-- Translations by Mariano Coll on 13 JUL 2015 -->
+
+    <string name="app_name">Barra de Amigos</string>
+
+    <!-- action bar titles -->
+    <string name="action_start_wear_app">Wear Seria Ropa</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="action_help">Ayuda</string>
+
+    <!-- set timer start/stop button -->
+    <string name="button_set_timer_start">Inicio</string>
+    <string name="button_set_timer_stop">Detener</string>
+
+    <!-- snippet strings -->
+    <string name="unit_seconds">segundos</string>
+
+    <!--
+    preferences xml strings
+    -->
+
+    <string name="prepare_phase_length_preference_title">Longitud de la Fase</string>
+    <string name="prepare_phase_length_preference_summary"></string>
+    <string name="prepare_phase_length_preference_dialog_title">Seleccione la longitud de la fase:</string>
+
+    <string name="prepare_phase_background_color_title">Color de Fondo</string>
+    <string name="prepare_phase_background_color_summary">Color de fondo su esfera</string>
+    <string name="prepare_phase_background_color_dialog_title">Seleccione el color de fondo:</string>
+
+    <string name="prepare_phase_preferences">Preparese</string>
+    <string name="prepare_phase_vibrate_on_title">Alerta vibratoria</string>
+    <string name="prepare_phase_vibrate_on_summary">Vibrar al inicio de la fase o etapa</string>
+
+    <string name="lift_phase_length_preference_title">Longitud de la Fase</string>
+    <string name="lift_phase_length_preference_summary"></string>
+    <string name="lift_phase_length_preference_dialog_title">Seleccione la longitud de la fase:</string>
+
+    <string name="lift_phase_background_color_title">Color de Fondo</string>
+    <string name="lift_phase_background_color_summary">Color de fondo su esfera</string>
+    <string name="lift_phase_background_color_dialog_title">Seleccione el color de fondo:</string>
+
+    <string name="lift_phase_preferences">Levantar</string>
+    <string name="lift_phase_vibrate_on_title">Alerta vibratoria</string>
+    <string name="lift_phase_vibrate_on_summary">Vibrar al inicio de la fase o etapa</string>
+
+    <string name="wait_phase_length_preference_title">Longitud de la Fase</string>
+    <string name="wait_phase_length_preference_summary"></string>
+    <string name="wait_phase_length_preference_dialog_title">Seleccione la longitud de la fase:</string>
+
+    <string name="wait_phase_background_color_title">Color de Fondo</string>
+    <string name="wait_phase_background_color_summary">Color de fondo su esfera</string>
+    <string name="wait_phase_background_color_dialog_title">Seleccione el color de fondo:</string>
+
+    <string name="wait_phase_preferences">Esperar</string>
+    <string name="wait_phase_vibrate_on_title">Alerta vibratoria</string>
+    <string name="wait_phase_vibrate_on_summary">Vibrar al inicio de la fase o etapa</string>
+
+    <string name="reset_default_values_preferences">Restaurar</string>
+    <string name="reset_default_values_title">Restaurar Valores Predeterminados</string>
+    <string name="reset_default_values_summary">Revertir todos los ajustes a sus valores por defecto</string>
+    <string name="reset_default_values_dialog_message">¿Estas seguro que quieres reestablecer todos los valores predeterminados?</string>
+
+    <!--
+    help fragment strings
+    -->
+
+    <string name="help_question_1">¿Qué es la Barra de Amigos?</string>
+    <string name="help_answer_1">La barbell buddy is una aplicación de tiempos orientada a personas que ya tienen una rutina de ejercicio. Apuntada a los usuarios de Android. ¡La intención es que sea una gentil asistente para "comenzar la proxima serie" asegurándose que descanses el tiempo necesario entre repeticiones!</string>
+
+    <string name="help_question_2">¿Cuáles son las fases de ajuste?</string>
+    <string name="help_answer_2">Barra de Amigos usa 3 fases de ajuste diferentes: <b>prepárate</b>, <b>levanta</b> y <b>espera</b>. la fase prepárate tiene la finalidad de que te dispongas con todo el equipamiento necesario par hacer gimnasia, la fase levanta indica el tiempo en que tu rutina debe estar activa y la fase espera es el tiempo de descanso antes de prepararnos para la siguiente serie. estas fases pueden personalizarse en la configuración de la aplicación.</string>
+
+    <string name="help_question_3">¿Cómo debería usar Barra de Amigos?</string>
+    <string name="help_answer_3">En el wear watch de tu Android puedes decir: "OK Google comenzemos el entrenamiento" para iniciar barbell buddy. Una vibración le aletará cuando sea el momento de prepararse para la serie que se viene. Una vez que la serie haya terminado, toque en cualquier lugar del watch face para resetear el temporizador al tiempo de descanso. en cambio un doble toque reseteara el temporizador para la fase de preparación.</string>
+
+    <string name="help_question_4">¿Hay algunas caracteristicas en las cuales se esté trabajando para futuras versiones?</string>
+    <string name="help_answer_4">¡Sí! Actualmente estamos trabajando en una función de detección automática de gimnasio, que iniciará barbell buddy en el reloj de su Android Wear cuando llegue al gimnasio. En el futuro también esperamos tener una función de detección de (reestablecimiento automatico al final) ademas de tener algunas estadísticas básicas de entrenamiento para que las veas después de tu sesión.</string>
+
+    <string name="help_question_5">¿Cómo puedo ponerme en contacto con usted para comentarios y sugerencias?</string>
+    <string name="help_answer_5">Nos encantaría escuchar sus comentarios y sugerencias! Nos puede contactar en <a ref="mailto:barbellbuddy@mcraesolutions.com">barbellbuddy@mcraesolutions.com</a>, y nos esforzaremos para responder personalmente a cada correo electrónico. Gracias de antemano por acercarse, usted es impresionante <b>:)</b></string>
+
+</resources>

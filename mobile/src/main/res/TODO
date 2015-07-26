@@ -1,0 +1,3 @@
+1. drawable-hdpi, drawable-mdpi, and drawable-xhdpi folders were created to copy dark_header.0.png files, required by @drawable/dark_header_dither (copied from sdk based on an answer from this post: http://stackoverflow.com/questions/10020466/android-4-0-sub-title-section-label-styling); this is currently unused take care of either using or deleting these resources!!!
+
+2. 

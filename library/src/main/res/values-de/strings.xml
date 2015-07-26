@@ -1,0 +1,14 @@
+<resources>
+    <!-- Translations by Georg Lemberg on 1 JUL 2015 -->
+
+    <string name="app_name">Hintergrund Bibliothek</string>
+
+    <!-- set phase title strings -->
+    <string name="prepare_phase_title">VORBEREITEN</string>
+    <string name="lift_phase_title">TRAINIEREN!</string>
+    <string name="wait_phase_title">WARTEN</string>
+
+    <!-- ImageView descriptions -->
+    <string name="background_image_description">Das ist der Hintergrund. Er ändert sich in der Regel mit der Phase des Satzes.</string>
+
+</resources>

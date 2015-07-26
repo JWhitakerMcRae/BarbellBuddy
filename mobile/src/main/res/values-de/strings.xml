@@ -1,0 +1,82 @@
+<resources>
+    <!-- Translations by Georg Lemberg on 1 JUL 2015 -->
+
+    <string name="app_name">Hantel Kumpel</string>
+
+    <!-- action bar titles -->
+    <string name="action_start_wear_app">Start Wear</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="action_help">Hilfe</string>
+
+    <!-- set timer start/stop button -->
+    <string name="button_set_timer_start">Start</string>
+    <string name="button_set_timer_stop">Stopp</string>
+
+    <!-- snippet strings -->
+    <string name="unit_seconds">sekunden</string>
+
+    <!--
+    preferences xml strings
+    -->
+
+    <string name="prepare_phase_length_preference_title">Länge der Phasen</string>
+    <string name="prepare_phase_length_preference_summary"></string>
+    <string name="prepare_phase_length_preference_dialog_title">Wählen Sie die Länge der Phasen:</string>
+
+    <string name="prepare_phase_background_color_title">Hintergrundfarbe</string>
+    <string name="prepare_phase_background_color_summary">Watchhintergrundfarbe</string>
+    <string name="prepare_phase_background_color_dialog_title">Wählen sie die Hintergrundfarbe:</string>
+
+    <string name="prepare_phase_preferences">Vorbereiten</string>
+    <string name="prepare_phase_vibrate_on_title">Vibrationsalarm</string>
+    <string name="prepare_phase_vibrate_on_summary">Vibration beim Start der Phase</string>
+
+    <string name="lift_phase_length_preference_title">Länge der Phasen</string>
+    <string name="lift_phase_length_preference_summary"></string>
+    <string name="lift_phase_length_preference_dialog_title">Wählen Sie die Länge der Phasen:</string>
+
+    <string name="lift_phase_background_color_title">Hintergrundfarbe</string>
+    <string name="lift_phase_background_color_summary">Watchhintergrundfarbe</string>
+    <string name="lift_phase_background_color_dialog_title">Wählen sie die Hintergrundfarbe:</string>
+
+    <string name="lift_phase_preferences">Trainieren</string>
+    <string name="lift_phase_vibrate_on_title">Vibrationsalarm</string>
+    <string name="lift_phase_vibrate_on_summary">Vibration beim Start der Phase</string>
+
+    <string name="wait_phase_length_preference_title">Länge der Phasen</string>
+    <string name="wait_phase_length_preference_summary"></string>
+    <string name="wait_phase_length_preference_dialog_title">Wählen Sie die Länge der Phasen:</string>
+
+    <string name="wait_phase_background_color_title">Hintergrundfarbe</string>
+    <string name="wait_phase_background_color_summary">Watchhintergrundfarbe</string>
+    <string name="wait_phase_background_color_dialog_title">Wählen sie die Hintergrundfarbe:</string>
+
+    <string name="wait_phase_preferences">Warten</string>
+    <string name="wait_phase_vibrate_on_title">Vibrationsalarm</string>
+    <string name="wait_phase_vibrate_on_summary">Vibration beim Start der Phase</string>
+
+    <string name="reset_default_values_preferences">Zurücksetzen</string>
+    <string name="reset_default_values_title">Wiederherstellen</string>
+    <string name="reset_default_values_summary">Standardeinstellungen wiederherstellen</string>
+    <string name="reset_default_values_dialog_message">Möchten Sie, dass alle Einstellungen auf die Standardwerte zurückgesetzt werden?</string>
+
+    <!--
+    help fragment strings
+    -->
+
+    <string name="help_question_1">Was ist der Hantel Kumpel?</string>
+    <string name="help_answer_1">Hantel Kumpel ist eine App zum Timen von Sätzen für Leute, die schon eine Trainigsroutine haben. Für Android-Nutzer gedacht, soll sie als nette Erinerrung dienen um den nächsten Satz zu starten. So haben Sie immer die korrekte Pauselänge zwischen den Sätzen!</string>
+
+    <string name="help_question_2">Was sind die Satz-Phasen?</string>
+    <string name="help_answer_2">Der Hantel Kumpel nutzt drei bestimmte Phasen: <b>Vorbereiten</b>, <b>Trainieren</b> und <b>Warten</b>. Die Vorbereiten-Phase ist so gedacht, dass der Nutzer die Übung vorbereiten kann. Die Trainieren-Phase sagt Bescheid, wenn die Übung losgeht. Die Warten-Phase ist der Abstand zwischen den einzelnen Sätzen.</string>
+
+    <string name="help_question_3">Wie sollte ich den Hantel Kumpel benutzen?</string>
+    <string name="help_answer_3">Durch das Kommando "OK Google, starte das Training" wird die App gestartet. Eine leichte Vibration sagt Ihnen dann Bescheid, wenn es Zeit für den nächsten Satz ist. Tippen Sie irgendwo auf die Uhr nach jedem Satz, und schon wird die Warten-Phase aktiv. Ein doppeltes Tippen bring einen auf die Vorbereiten-Phase.</string>
+
+    <string name="help_question_4">Gibt es Funktionen an denen Sie gerade für zukünftige Versionen arbeiten?</string>
+    <string name="help_answer_4">Ja! Wir arbeiten derzeit an einer automatischen Fitness-Studio Erkennungsfunktion, die Hantel Kumpel auf Ihrer Android-Wear Uhr starten wird, sobald Sie in Ihr Fitness-Studio zu gelangen. In Zukunft hoffen wir auch, dass die APP automatisch das Satz-Ende erkennen kann und Sie mit einigen Statistiken zu Ihrem Training versorgen kann.</string>
+
+    <string name="help_question_5">Wie kann ich mit Ihnen Kontakt aufnehmen für Feedback oder Anregungen?</string>
+    <string name="help_answer_5">Wir freuen uns Ihr Feedback und Ihre Vorschläge zu hören! Wir können unter <a ref="mailto:barbellbuddy@mcraesolutions.com">barbellbuddy@mcraesolutions.com</a> kontaktiert werden, und werden uns bemühen, persönlich jede E-Mail zu beantworten <b>:)</b></string>
+
+</resources>
