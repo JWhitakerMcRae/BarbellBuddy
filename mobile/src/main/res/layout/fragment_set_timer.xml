@@ -3,31 +3,6 @@
     android:layout_height="match_parent"
     tools:context=".SetTimerActivity$PlaceholderFragment">
 
-    <TextView
-        android:id="@+id/textView_setTimerInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginBottom="0dp"
-        android:text="@string/textview_set_timer_info"
-        android:textAppearance="@style/SectionHeader"
-        android:visibility="gone"/>
-
-    <TextView
-        android:id="@+id/textView_setTimerInfo2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_setTimerInfo"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginBottom="0dp"
-        android:text="@string/textview_set_timer_info2"
-        android:textAppearance="@style/TextAppearance.Medium"
-        android:visibility="gone"/>
-
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
