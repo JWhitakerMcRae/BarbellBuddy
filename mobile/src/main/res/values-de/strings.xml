@@ -1,7 +1,7 @@
 <resources>
     <!-- Translations by Georg Lemberg on 1 JUL 2015 -->
 
-    <string name="app_name">Hantel Kumpel</string>
+    <string name="app_name">Barbell Buddy</string>
 
     <!-- action bar titles -->
     <string name="action_start_wear_app">Start Wear</string>
@@ -64,17 +64,17 @@
     help fragment strings
     -->
 
-    <string name="help_question_1">Was ist der Hantel Kumpel?</string>
-    <string name="help_answer_1">Hantel Kumpel ist eine App zum Timen von Sätzen für Leute, die schon eine Trainigsroutine haben. Für Android-Nutzer gedacht, soll sie als nette Erinerrung dienen um den nächsten Satz zu starten. So haben Sie immer die korrekte Pauselänge zwischen den Sätzen!</string>
+    <string name="help_question_1">Was ist der Barbell Buddy?</string>
+    <string name="help_answer_1">Barbell Buddy ist eine App zum Timen von Sätzen für Leute, die schon eine Trainigsroutine haben. Für Android-Nutzer gedacht, soll sie als nette Erinerrung dienen um den nächsten Satz zu starten. So haben Sie immer die korrekte Pauselänge zwischen den Sätzen!</string>
 
     <string name="help_question_2">Was sind die Satz-Phasen?</string>
-    <string name="help_answer_2">Der Hantel Kumpel nutzt drei bestimmte Phasen: <b>Vorbereiten</b>, <b>Trainieren</b> und <b>Warten</b>. Die Vorbereiten-Phase ist so gedacht, dass der Nutzer die Übung vorbereiten kann. Die Trainieren-Phase sagt Bescheid, wenn die Übung losgeht. Die Warten-Phase ist der Abstand zwischen den einzelnen Sätzen.</string>
+    <string name="help_answer_2">Der Barbell Buddy nutzt drei bestimmte Phasen: <b>Vorbereiten</b>, <b>Trainieren</b> und <b>Warten</b>. Die Vorbereiten-Phase ist so gedacht, dass der Nutzer die Übung vorbereiten kann. Die Trainieren-Phase sagt Bescheid, wenn die Übung losgeht. Die Warten-Phase ist der Abstand zwischen den einzelnen Sätzen.</string>
 
-    <string name="help_question_3">Wie sollte ich den Hantel Kumpel benutzen?</string>
+    <string name="help_question_3">Wie sollte ich den Barbell Buddy benutzen?</string>
     <string name="help_answer_3">Durch das Kommando "OK Google, starte das Training" wird die App gestartet. Eine leichte Vibration sagt Ihnen dann Bescheid, wenn es Zeit für den nächsten Satz ist. Tippen Sie irgendwo auf die Uhr nach jedem Satz, und schon wird die Warten-Phase aktiv. Ein doppeltes Tippen bring einen auf die Vorbereiten-Phase.</string>
 
     <string name="help_question_4">Gibt es Funktionen an denen Sie gerade für zukünftige Versionen arbeiten?</string>
-    <string name="help_answer_4">Ja! Wir arbeiten derzeit an einer automatischen Fitness-Studio Erkennungsfunktion, die Hantel Kumpel auf Ihrer Android-Wear Uhr starten wird, sobald Sie in Ihr Fitness-Studio zu gelangen. In Zukunft hoffen wir auch, dass die APP automatisch das Satz-Ende erkennen kann und Sie mit einigen Statistiken zu Ihrem Training versorgen kann.</string>
+    <string name="help_answer_4">Ja! Wir arbeiten derzeit an einer automatischen Fitness-Studio Erkennungsfunktion, die Barbell Buddy auf Ihrer Android-Wear Uhr starten wird, sobald Sie in Ihr Fitness-Studio zu gelangen. In Zukunft hoffen wir auch, dass die APP automatisch das Satz-Ende erkennen kann und Sie mit einigen Statistiken zu Ihrem Training versorgen kann.</string>
 
     <string name="help_question_5">Wie kann ich mit Ihnen Kontakt aufnehmen für Feedback oder Anregungen?</string>
     <string name="help_answer_5">Wir freuen uns Ihr Feedback und Ihre Vorschläge zu hören! Wir können unter <a ref="mailto:barbellbuddy@mcraesolutions.com">barbellbuddy@mcraesolutions.com</a> kontaktiert werden, und werden uns bemühen, persönlich jede E-Mail zu beantworten <b>:)</b></string>

@@ -1,7 +1,7 @@
 <resources>
     <!-- Translations by Mariano Coll on 13 JUL 2015 -->
 
-    <string name="app_name">Barra de Amigos</string>
+    <string name="app_name">Barbell Buddy</string>
 
     <!-- action bar titles -->
     <string name="action_start_wear_app">Wear Seria Ropa</string>
@@ -64,13 +64,13 @@
     help fragment strings
     -->
 
-    <string name="help_question_1">¿Qué es la Barra de Amigos?</string>
+    <string name="help_question_1">¿Qué es la Barbell Buddy?</string>
     <string name="help_answer_1">La barbell buddy is una aplicación de tiempos orientada a personas que ya tienen una rutina de ejercicio. Apuntada a los usuarios de Android. ¡La intención es que sea una gentil asistente para "comenzar la proxima serie" asegurándose que descanses el tiempo necesario entre repeticiones!</string>
 
     <string name="help_question_2">¿Cuáles son las fases de ajuste?</string>
-    <string name="help_answer_2">Barra de Amigos usa 3 fases de ajuste diferentes: <b>prepárate</b>, <b>levanta</b> y <b>espera</b>. la fase prepárate tiene la finalidad de que te dispongas con todo el equipamiento necesario par hacer gimnasia, la fase levanta indica el tiempo en que tu rutina debe estar activa y la fase espera es el tiempo de descanso antes de prepararnos para la siguiente serie. estas fases pueden personalizarse en la configuración de la aplicación.</string>
+    <string name="help_answer_2">Barbell Buddy usa 3 fases de ajuste diferentes: <b>prepárate</b>, <b>levanta</b> y <b>espera</b>. la fase prepárate tiene la finalidad de que te dispongas con todo el equipamiento necesario par hacer gimnasia, la fase levanta indica el tiempo en que tu rutina debe estar activa y la fase espera es el tiempo de descanso antes de prepararnos para la siguiente serie. estas fases pueden personalizarse en la configuración de la aplicación.</string>
 
-    <string name="help_question_3">¿Cómo debería usar Barra de Amigos?</string>
+    <string name="help_question_3">¿Cómo debería usar Barbell Buddy?</string>
     <string name="help_answer_3">En el wear watch de tu Android puedes decir: "OK Google comenzemos el entrenamiento" para iniciar barbell buddy. Una vibración le aletará cuando sea el momento de prepararse para la serie que se viene. Una vez que la serie haya terminado, toque en cualquier lugar del watch face para resetear el temporizador al tiempo de descanso. en cambio un doble toque reseteara el temporizador para la fase de preparación.</string>
 
     <string name="help_question_4">¿Hay algunas caracteristicas en las cuales se esté trabajando para futuras versiones?</string>
