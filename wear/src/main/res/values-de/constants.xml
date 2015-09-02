@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- TODO: merge constants files from mobile and wear in library module -->
+
+    <!--
+    The naming convention found in this file has been taken from an article by Kiran Rao at The Curious Techizen:
+    http://curioustechizen.blogspot.com/2013/02/android-constants-preference-keys.html
+    -->
+
+    <!--
+    Broadcast Actions
+    -->
+
+    <string name="broadcast_launch_wear_app">com.mcraesolutions.barbellbuddy.LAUNCH_WEAR_APP</string>
+    <string name="broadcast_update_settings_values">com.mcraesolutions.barbellbuddy.UPDATE_SETTINGS_VALUES</string>
+
+    <!--
+    Intent Extras
+    -->
+
+    <!-- settings value - set phase length -->
+    <string name="extra_prepare_phase_length_ms">com.mcraesolutions.barbellbuddy.PREPARE_PHASE_LENGTH_MS</string>
+    <string name="extra_lift_phase_length_ms">com.mcraesolutions.barbellbuddy.LIFT_PHASE_LENGTH_MS</string>
+    <string name="extra_wait_phase_length_ms">com.mcraesolutions.barbellbuddy.WAIT_PHASE_LENGTH_MS</string>
+
+    <!-- settings value - set phase background color -->
+    <string name="extra_prepare_phase_background_color">com.mcraesolutions.barbellbuddy.PREPARE_PHASE_BACKGROUND_COLOR2</string> <!-- TODO: why need to append with '2' to make it work?? -->
+    <string name="extra_lift_phase_background_color">com.mcraesolutions.barbellbuddy.LIFT_PHASE_BACKGROUND_COLOR</string>
+    <string name="extra_wait_phase_background_color">com.mcraesolutions.barbellbuddy.WAIT_PHASE_BACKGROUND_COLOR</string>
+
+    <!-- settings value - set phase alert on/off status -->
+    <string name="extra_prepare_phase_start_alert_on">com.mcraesolutions.barbellbuddy.PREPARE_PHASE_START_ALERT_ON</string>
+    <string name="extra_lift_phase_start_alert_on">com.mcraesolutions.barbellbuddy.LIFT_PHASE_START_ALERT_ON</string>
+    <string name="extra_wait_phase_start_alert_on">com.mcraesolutions.barbellbuddy.WAIT_PHASE_START_ALERT_ON</string>
+
+    <!--
+    PutDataMapRequest Paths (used to read DataEvent objects from phone)
+    -->
+
+    <!-- start BarbellBuddy Wear app (used for auto gym detection based on GPS + auto-launch of Wear app from phone) -->
+    <string name="path_start_wear_activity">/start/BarbellBuddyWear</string>
+
+    <!-- settings data path - root level -->
+    <string name="path_prepare_root">/prepare</string>
+    <string name="path_lift_root">/lift</string>
+    <string name="path_wait_root">/wait</string>
+
+    <!-- settings data path - set phase length (ms) -->
+    <string name="path_prepare_phase_length_ms">/prepare/phase_length_ms</string>
+    <string name="path_lift_phase_length_ms">/lift/phase_length_ms</string>
+    <string name="path_wait_phase_length_ms">/wait/phase_length_ms</string>
+
+    <!-- settings data path - set phase background color -->
+    <string name="path_prepare_phase_background_color">/prepare/phase_background_color</string>
+    <string name="path_lift_phase_background_color">/lift/phase_background_color</string>
+    <string name="path_wait_phase_background_color">/wait/phase_background_color</string>
+
+    <!-- settings data path - set phase alert on/off status -->
+    <string name="path_prepare_phase_start_alert_on">/prepare/phase_start_alert_on</string>
+    <string name="path_lift_phase_start_alert_on">/lift/phase_start_alert_on</string>
+    <string name="path_wait_phase_start_alert_on">/wait/phase_start_alert_on</string>
+
+</resources>
